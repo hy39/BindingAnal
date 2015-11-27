@@ -1,0 +1,9 @@
+Feb 22, 2013
+Modify plot_h3n2_bding_K.m
+Use the following codes to obtain regression line. This can give p value. 
+        X = [ones(size(x)) x]; 
+        [b,bint,r,rint,stats] = regress(y,X);
+        x1fit = min(x):1:max(x);
+        YFIT = b(1) + b(2)*x1fit;
+
+No idea about what is plot_h3n2_bding_K_largesamples.m

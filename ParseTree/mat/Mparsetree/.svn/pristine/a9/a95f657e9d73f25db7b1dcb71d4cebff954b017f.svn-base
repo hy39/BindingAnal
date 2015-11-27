@@ -1,0 +1,42 @@
+Jul 2, 2013
+Target template: hm_h3n2_mcc_trait3.nx.trees
+Can show different colors for different traits on branches.
+
+Flows:
+1.  Open nexus files and save only newick data into a separate newick file.
+2.	Read the newick file with sequences. (read_newick_seq.m -> save tree topology and taxa)
+3.	Transfer sequences in taxa to fasta. (taxa2fasta.m -> ancestral_sequences.fas)
+4.	Convert into translated sequences using MEGA. (ancestral_sequences.fas-> ancestral_sequences_prot.fas)
+5.	Calculate netcharge. (main_aa_dist(infile, outfile, 'H3N2') -> hm_h3n2_ny_charge_1993)
+6.	Annotate newick tree with netcharge. (annotate_tree.m -> hm_h3n2_ny_dna_beast_1993.traits.nw.mcc.(time).trees)
+7.	Copy the nexus header into the newick file. (hm_h3n2_mcc.traits.nx.trees)
+
+
+proj = 'ancestor_20130702'
+Steps for annotate viral netcharge on phylogenetic tree
+>> [tree, n, b, nm, taxa] = read_newick_seq('dat/ancestor_20130702/hm_h3n2_ny_dna_beast_1993_2006.nw.mcc.(time).trees')
+>> save('newick_elements.mat', 'b', 'n', 'nm', 'tree', 'taxa')
+>> taxa2fasta(taxa)
+ancestral_sequences.fas -> ancestral_sequences.prot.fas
+>> main_aa_dist([proj '/ancestral_sequences.prot.fas'],'hm_h3n2_ny_charge_1993_2006.mat','H3N2') -> hm_h3n2_ny_charge_1993
+>> annotate_tree('dat/ancestor_20130702/hm_h3n2_ny_dna_beast_1993_2006.nw.mcc.(time).trees','dat/ancestor_20130702/hm_h3n2_ny_charge_1993_2006.mat')
+
+
+
+%Newick to pairs
+[tree, n, b, nm, taxa] = read_newick_seq('dat/ancestor_20130702/hm_h3n2_ny_dna_beast_1993_2006.nw.mcc.(time).trees')
+-> save tree topology as hm_h3n2_ny_dna_beast_1993_2006.topo.nw.mcc.(time).trees
+pairs = string2pairs('dat/ancestor_20130702/hm_h3n2_ny_dna_beast_1993_2006.topo.nw.mcc.(time).trees',665);
+%618 ABJ53482_CY016995_2006/04/06_11_17,
+[anc]= getParentList(pairs, 618); %identify the main trunk
+
+
+
+%Pairs to Newick
+tree = pairs2string(pairs,b); %need branch lengths
+fileID = fopen(outfile,'w');
+fprintf(fileID,'%s',tr);
+fclose(fileID);
+
+%Annotate traits on Newick
+annotate_tree('tree2.txt','dat/ancestor_20130702/hm_h3n2_ny_charge_1993_2006.mat');

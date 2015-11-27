@@ -1,0 +1,5 @@
+Jul 30, 2013
+hm_h1n1_noram_age_dna_beast_1995_2006_full.fas:
+only exclude strain ACD47243 using excluded_strains_2.txt.
+update date to be 06/30 if there are not informaiton.
+

@@ -1,0 +1,34 @@
+#NEXUS
+
+Begin taxa;
+	Dimensions ntax=10;
+	Taxlabels
+		ABG26934_CY011384_1994/01/06_9_17
+		ABG37351_CY011576_1993/11/08_8_17
+		ABG47917_CY011856_1994/01/06_9_18
+		ABG47939_CY011872_1993/12/02_9_17
+		ABG48038_CY011944_1993/12/30_9_18
+		ABG67234_CY012280_1994/01/04_9_15
+		ABG67245_CY012288_1994/01/06_9_18
+		ABG88421_CY012944_1994/01/02_9_18
+		ABJ09140_CY016427_1993/12/30_9_18
+		ABK40678_CY017307_1994/01/03_9_18
+		;
+End;
+
+Begin trees;
+	Translate
+		1 ABG26934_CY011384_1994/01/06_9_17,
+		2 ABG37351_CY011576_1993/11/08_8_17,
+		3 ABG47917_CY011856_1994/01/06_9_18,
+		4 ABG47939_CY011872_1993/12/02_9_17,
+		5 ABG48038_CY011944_1993/12/30_9_18,
+		6 ABG67234_CY012280_1994/01/04_9_15,
+		7 ABG67245_CY012288_1994/01/06_9_18,
+		8 ABG88421_CY012944_1994/01/02_9_18,
+		9 ABJ09140_CY016427_1993/12/30_9_18,
+		10 ABK40678_CY017307_1994/01/03_9_18
+		;
+tree TREE1 = [&R] 
+((2[&annotation="",Netcharge.set="17"]:0.18885000880399028,((9[&annotation="",Netcharge.set="18"]:0.07424794666803756,3[&annotation="",Netcharge.set="18"]:0.0934129021779878)11[&annotation="",Netcharge.set="18"]:0.08145590834593101,8[&annotation="",Netcharge.set="18"]:0.1639174073754083)12[&annotation="",Netcharge.set="18"]:0.17551439472088567)13[&annotation="",Netcharge.set="18"]:0.12810529923060587,((4[&annotation="",Netcharge.set="17"]:0.09035922439290694,1[&annotation="",Netcharge.set="17"]:0.18618400194243073)14[&annotation="",Netcharge.set="18"]:0.12515839767613252,(6[&annotation="",Netcharge.set="15"]:0.1276406405280715,((5[&annotation="",Netcharge.set="18"]:0.004564314014961657,7[&annotation="",Netcharge.set="18"]:0.02372926952491189)15[&annotation="",Netcharge.set="18"]:0.028480355929049683,10[&annotation="",Netcharge.set="18"]:0.04399607309274922)16[&annotation="",Netcharge.set="18"]:0.0809067166482515)17[&annotation="",Netcharge.set="18"]:0.17822605751635018)18[&annotation="",Netcharge.set="18"]:0.1671461048568471)19[&annotation="",Netcharge.set="18"];
+End;

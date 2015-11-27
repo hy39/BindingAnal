@@ -1,0 +1,63 @@
+% plot_h3n2_noram.m
+% plot the netcharge by time of isolation
+% Data: AH3N2 North America 1968-2012
+% Feb 3, 2012
+% Hsiang-Yu Yuan
+
+
+p = path
+path(p,'../lib');
+
+load('../dat/h3n2_noram_1968_2012/hm_h3n2_noram_merged_data_1968.mat');
+figure;
+%hold;
+
+viruses = Viruses;
+
+ngs_index = 4;
+index = 2; %isolation date
+charge_index = 3; %netcharge
+year_s = 1965;
+year_e = 2008;
+y_s = year_s;
+y_e = year_e;
+
+
+  % Viral Strains with #NGS = 6
+  v = viruses(find(viruses(:,2)>y_s & viruses(:,2)<y_e),:);
+  ac = group_aa_dist(v);
+  siz = length(ac(:,1));
+  %hold on;
+  for i=1:siz
+      yr = ac(i,1);
+      charge = ac(i,3);
+      amount = ac(i,4);
+      if(amount<3)
+        plot(yr,charge,'bo', 'MarkerSize', 2, 'MarkerFaceColor', 'b');
+      elseif(amount<5)
+        plot(yr,charge,'bo', 'MarkerSize', 5, 'MarkerFaceColor', 'b');
+      elseif(amount<10)
+           plot(yr,charge,'bo', 'MarkerSize', 7, 'MarkerFaceColor', 'b');
+      else
+          plot(yr,charge,'bo', 'MarkerSize', 8, 'MarkerFaceColor', 'b');
+      end
+  hold on;
+  end
+    
+    
+   
+    
+%axis([ 0, 0, 14, 20])
+%year_s = 1968;
+%year_e = 2010;
+%set(gca,'XLim',[year_s year_e])
+set(gca,'YLim',[10 21]) %set the range
+%x_scale = [1998 1999 2000 2001 2002 2003 2004 2005 2006];
+%x_label = ['1997/1998'; '1998/1999'; '1999/2000'; '2000/2001'; '2001/2002'; '2002/2003'; '2003/2004'; '2004/2005'; '2005/2006'];
+%x_label = [1998 1999 2000 2001 2002 2003 2004 2005 2006];
+%set(gca,'XTick',x_scale);
+%set(gca,'XTickLabel',x_label);
+xlabel('Time of Isolation');
+ylabel('Netcharges');
+%title(['Netcharges vs Time of Isolation (NZ; ' num2str(fix(ranges2(1,1))) '-' num2str(fix(ranges2(1,2))) ')']);
+

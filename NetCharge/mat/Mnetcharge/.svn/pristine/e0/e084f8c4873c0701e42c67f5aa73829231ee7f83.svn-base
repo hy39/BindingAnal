@@ -1,0 +1,14 @@
+function [ output_args ] = main_plot_bding_regression( age_min, age_max )
+%PLOT_BINDING_REGRESSION Summary of this function goes here
+%   Detailed explanation goes here
+
+  figure;
+  subplot(2,2,1);
+  plot_net_byage_reg(age_min, age_max);
+  
+  subplot(2,2,3);
+  plot_net_byage_dummy(age_min, age_max)
+  
+  
+end
+

@@ -1,0 +1,47 @@
+% plot_h3n2_noram.m
+% plot the netcharge by time of isolation
+% Data: AH3N2 North America 1968-2012
+% Feb 3, 2012
+% Hsiang-Yu Yuan
+
+
+
+
+load('../dat/h3n2_noram_1968_2012/hm_h3n2_noram_merged_data_1968.mat');
+figure;
+%hold;
+
+viruses = Viruses;
+
+ngs_index = 4;
+index = 2; %isolation date
+charge_index = 3; %netcharge
+bding_index = 9; %predicted binding score
+year_s = 1967;
+year_e = 2010;
+y_s = year_s;
+y_e = year_e;
+
+
+    % Viral Strains with #NGS = 6
+    viruses_ngs = viruses(find(viruses(:,2)>y_s & viruses(:,2)<y_e-0.5),:);
+    x = round(viruses_ngs(:,index));
+    y = viruses_ngs(:,bding_index);
+    plot(x,y,'Bo');
+    hold;
+    
+    
+%axis([ 0, 0, 14, 20])
+%year_s = 1968;
+%year_e = 2010;
+set(gca,'XLim',[year_s year_e])
+set(gca,'YLim',[25 45]) %set the range
+%x_scale = [1998 1999 2000 2001 2002 2003 2004 2005 2006];
+%x_label = ['1997/1998'; '1998/1999'; '1999/2000'; '2000/2001'; '2001/2002'; '2002/2003'; '2003/2004'; '2004/2005'; '2005/2006'];
+%x_label = [1998 1999 2000 2001 2002 2003 2004 2005 2006];
+%set(gca,'XTick',x_scale);
+%set(gca,'XTickLabel',x_label);
+xlabel('Time of Isolation');
+ylabel('Predicted Binding Score');
+title('A/H3N2 (1968-2009)');
+

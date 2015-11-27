@@ -1,0 +1,1 @@
+ancestral sequence use the first sequence from posterior distribution.

@@ -1,0 +1,7 @@
+20130628
+Change this record
+ABA87242	23d	12/28/2004
+to
+ABA87242	  1	12/28/2004
+in the file hm_h3n2_ny_ay.csv
+eventually I should check the perl code to see what is going wrong?

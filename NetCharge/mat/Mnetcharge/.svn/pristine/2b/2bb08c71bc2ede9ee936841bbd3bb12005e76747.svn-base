@@ -1,0 +1,41 @@
+%main script to analyze netcharge in viral phylogenies
+%2)calculate netcharge -> charge.mat
+%3)merge metadata with netcharge -> merged_data.mat
+%4)add gene accession to each protein accession
+%5)create DNA FASTA files for BEAST input
+%Sep 26, 2012
+
+
+%step1 exclude outliers
+metadata = 'h1n1/hm_h1n1_flu_noram_ay.csv';
+metadata_exo = 'h1n1/hm_h1n1_flu_noram_ay_exo.csv';
+exc_dat = 'h1n1/excluded_strains.txt';
+label_excluded_data(metadata, metadata_exo, exc_dat);
+
+%step2calculate netcharge
+prot_fasta = 'h1n1/hm_h1n1_flu_noram_any_simple.fas';
+charge_out = 'h1n1/hm_h1n1_noram_charge';
+[header charge] = main_aa_dist(prot_fasta, charge_out);
+
+%step3 merge data, netcharge and ages information
+charge_dat = 'h1n1/hm_h1n1_noram_charge';
+metadata = 'h1n1/hm_h1n1_flu_noram_ay_exo.csv';
+merged_out = 'h1n1/hm_h1n1_noram_merged_data';
+[v gbacc] = merge_metadata(charge_dat, metadata, merged_out);
+
+%4)merge with predicted binding avidity data
+bding = [proj 'scr/h3n2_ny_binding.csv'];
+merge_bding_2(bding, merged_dat);
+disp 'Binding data generated';
+
+%step4 add gene accession
+merged_dat = 'h1n1/hm_h1n1_noram_merged_data';
+accession_table = 'h1n1/hm_h1n1_flu_noram';
+create_geneprot_table(accession_table, gbacc, merged_dat);
+disp 'Charged data generated';
+
+%step5 generate FASTA file
+DNAFile = 'h1n1/hm_h1n1_noram_ntcds_simple1.fas';
+outFile = 'h1n1/hm_h1n1_noram_age_dna_beast_1995_2008.fas';
+generate_fasta_for_beast(DNAFile, merged_dat, outFile, 1995, 2008.999);
+disp 'BEAST input generated';

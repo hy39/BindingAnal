@@ -1,0 +1,18 @@
+netcharge2: Created in Feb 4, 2012
+Use collapse data without duplicated recorded when download from influenza database.
+
+dat: 
+a. h1n1_world_1918_2007
+b. h3n2_noram_1968_2012
+c. h3n2_ny
+
+create folders
+plot/plot1_h3n2_ny_byages
+plot2_h3n2_ny_byK
+plot3_h3n2_ny_bytime
+plot2_h3n2_bytime
+plot3_h3n2_bytime_byngs
+plot4_h1n1_bytime_byngs
+
+Finish plot h3n2_ny_net_byage and h3n2_ny_byage_dominance
+Finish plot h3n2_ny_bding_byage and h3n2_
