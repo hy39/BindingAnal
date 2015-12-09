@@ -1,0 +1,54 @@
+fileID = fopen('tree1.txt','w');
+fprintf(fileID,'%s',tree);
+fclose(fileID);
+
+
+pairs = string2pairs('dat/ancestor_20130702/hm_h3n2_ny_dna_beast_1993_2006.topo.nw.mcc.(time).trees',665);
+%618 ABJ53482_CY016995_2006/04/06_11_17,
+[anc]= getParentList(pairs, 618); 
+
+% find the non trunk
+nodes = [1:1329];
+non_trunk = nodes(~ismember(1:1329, anc))
+
+ngs8 = find(charge_txt(:,5)==8);
+ngs9 = find(charge_txt(:,5)==9);
+ngs10 = find(charge_txt(:,5)==10);
+ngs11 = find(charge_txt(:,5)==11);
+
+ngs8a = ngs8(~ismember(find(charge_txt(:,5)==8), anc));
+ngs9a = ngs9(~ismember(find(charge_txt(:,5)==9), anc));
+ngs10a = ngs10(~ismember(find(charge_txt(:,5)==10), anc));
+ngs11a = ngs11(~ismember(find(charge_txt(:,5)==11), anc));
+
+
+anc8 = anc(ismember(anc,ngs8));
+anc9 = anc(ismember(anc,ngs9));
+anc10 = anc(ismember(anc,ngs10));
+anc11 = anc(ismember(anc,ngs11));
+
+
+mean(charge_txt(anc8,1))
+var(charge_txt(anc8,1))
+mean(charge_txt(ngs8a,1))
+var(charge_txt(ngs8a,1))
+
+mean(charge_txt(anc9,1))
+var(charge_txt(anc9,1))
+mean(charge_txt(ngs9a,1))
+var(charge_txt(ngs9a,1))
+
+
+mean(charge_txt(anc10,1))
+var(charge_txt(anc10,1))
+mean(charge_txt(ngs10a,1))
+var(charge_txt(ngs10a,1))
+
+mean(charge_txt(anc11,1))
+var(charge_txt(anc11,1))
+mean(charge_txt(ngs11a,1))
+var(charge_txt(ngs11a,1))
+
+
+
+

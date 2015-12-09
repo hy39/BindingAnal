@@ -1,0 +1,75 @@
+http://jvi.asm.org/content/87/17/9904.full
+H3
+N145K mutation into the HA of A/New York/774/93 (FigA) 	(sample)
+K145N mutation into the HA of A/Nanchang/933/95 (FigB)	(sample)
+
+
+http://jvi.asm.org/content/87/17/9904.full#F3
+
+http://jvi.asm.org/content/87/20/11168.short 
+H1
+K165E (sample) mutation in the Sa antigenic site of A/Puerto Rico/8/34 (PR8) HA
+Decrease receptor binding avidity
+K165E + S145R     Increase (sample)
+K165E + R224K     Increase (sample)
+K165E + D225Y    Increase (sample)
+
+ 
+
+
+http://www.pnas.org/content/108/51/E1417.full.pdf
+Glycosylation will decrease receptor binding avidity
+In one study, MAb
+escape mutants possessing new N-linked glycosylation sites at HA
+amino acid 131 or 144 (H3 numbering is used throughout) were
+foundtohavedecreasedreceptorbindingavidity,
+H1
+K144N decrease (sample)
+D225G Increase  (sample)
+N193K increase   (sample)
+P186S  increase   (sample)
+
+
+http://research.fhcrc.org/content/dam/stripe/bloom/labfiles/publications/Hooper2013.pdf 
+http://www.plosone.org/article/info%3Adoi%2F10.1371%2Fjournal.pone.0015190
+
+
+
+http://www.sciencemag.org/content/326/5953/734/F3.large.jpg
+H1
+E156K Increase (E156K already included in 2009 Hensley’s supplementary data, don’t include again)
+(E156K) + R220G Decrease  (sample)
+(E156K) + A227T Decrease  (sample)
+(E156K) + I252M Decrease  (sample)
+(E156K) + M255I Increase
+(E156K) + L48F Increase
+E158K Increase (sample)
+(E158K) + A200T Decrease
+(E158K) + R220G Decrease
+(E158K) + A227T Decrease
+(E158K) + T235A Same
+(E158K) + N290S Same
+E246G Increase (sample)
+G246E Decrease
+(E246G) + A227T Decrease
+(G246E) + G265R Same
+(E246G) + R78K Same
+
+Totally I add 14 more samples.
+x = Worse or equal binders in excel file (no =28)
+y = Better binders (no = 25)
+ 
+
+
+2samples Ttest: 
+Test whether netcharge between two groups come from same normal distribution.
+Worse group vs Better group
+Worse + Neutral group vs Better group
+
+http://www.ats.ucla.edu/stat/examples/icda/default.htm
+Two-Way Contingency Tables
+Use Chi square test
+     netcharge		          decrease binding        increase binding   
+1  positive charge         		%		%
+2  negative charge		%		%
+See the correlation

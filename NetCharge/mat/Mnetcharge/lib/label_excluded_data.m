@@ -1,0 +1,36 @@
+%return a gene2protein table
+function [gb] = label_excluded_data(metadata, metadata_exout, exc_dat)
+    % Retrieve metadata
+    Filename1 = metadata;
+    fid1 = fopen(['dat/' Filename1]);
+    patient_info = textscan(fid1, '%s %f %s', 'Delimiter', ',');
+    
+    % Retrieve excluded strains
+    Filename2 = exc_dat;
+    fid2 = fopen(['dat/' Filename2]);
+    excluded_strains = textscan(fid2, '%s');
+    disp 'test';
+    
+    str = excluded_strains{1};
+    for i=1:length(str)
+        ['check' char(str(i))]
+        id = find(strcmp(patient_info{1,1},str(i,1))==1);
+        st = ['remove sample id' patient_info{1,1}(id,1)]
+        patient_info{1,1}(id)=[];
+        st = ['remove sample age ' patient_info{1,2}(id,1)];
+        patient_info{1,2}(id)=[];
+        st = ['remove sample isodate' patient_info{1,3}(id,1)];
+        patient_info{1,3}(id)=[];
+    end
+    
+    %save(['dat/' exc_out], 'excluded_strains');
+    %save to text file
+    fileID = fopen(['dat/' metadata_exout],'w');
+    for i=1:length(patient_info{1})
+        access = patient_info{1}{i};
+        age = patient_info{2}(i);
+        isodate = patient_info{3}{i};
+        fprintf(fileID,'%s,%d,%s\n',access, age, isodate);
+        end
+    fclose(fileID);
+end
