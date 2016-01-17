@@ -1,3 +1,9 @@
+# ignore all files in the output/ directory
+output/
+
+# ignore all .pdf files in the doc- directory
+doc/**/*.pdf
+
 # Windows image file caches
 Thumbs.db
 ehthumbs.db
