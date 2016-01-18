@@ -1,0 +1,39 @@
+Data sources:
+Collection methods:
+
+Sequence data: (Before remove redundant set: 719) 686
+Time: 1993-2006 (Corresponding to The NIAID Influenza Genome Sequencing Project; for age regression: 1993-2005, needs to be consistent)
+Location: NY State
+Source: The Influenza Virus Resource Database
+Raw data: BindingAnal\NetCharge\perl\Pnetcharge\seq\hm_h3n2_ny
+Preprocessing: remove redundant set(where is the code? see Mnetcharge)
+Output for BEAST: hm_h3n2_ny_dna_beast_1993_2006.fas
+ 
+
+
+
+
+
+
+Figure sources:
+From package BindingAnal:
+
+Figure1 H3N2 binding age1-65.			E:\Projects\BindingAnal\NetCharge\mat\Mnetcharge\plot\plot5_h3n2_ny_byages_multigroups\fig\20130911\h3n2-bding-age65.fig 
+FigureS1 H3N2 binding age1-100.			E:\Projects\BindingAnal\NetCharge\mat\Mnetcharge\plot\plot5_h3n2_ny_byages_multigroups\fig\20130911\h3n2-bding-age100.fig 	
+FigureS2 H1N1 binding.				E:\Projects\BindingAnal\NetCharge\mat\Mnetcharge\plot\plot5_h3n2_ny_byages_multigroups\fig\20130911\h1n1-bding-age65_100.fig 		
+Figure2a H3N2 viral phylogeny.			E:\Projects\BindingAnal\ParseTree\mat\Mparsetree\dat\ancestor_20130713\fig\hm_h3n2_ny_dna_beast_1993_export(4)_node.(time).png
+Figure2b H3N2 netcharge by time.		E:\Projects\BindingAnal\ParseTree\mat\Mparsetree\dat\ancestor_20130713\fig\20130913\net_bytime(2).fig
+Figure3a H3N2 viral phylogeny			E:\Projects\BindingAnal\ParseTree\mat\Mparsetree\dat\ancestor_20130713\fig\hm_h3n2_ny_dna_beast_1993_export(5)_binding.(time).png
+Figure3b H3N2 binding score by time.		E:\Projects\BindingAnal\ParseTree\mat\Mparsetree\dat\ancestor_20130713\fig\20130913\binding_bytime(2).fig
+Figure4a H1N1 viral phylogeny.			E:\Projects\BindingAnal\ParseTree\mat\Mparsetree\dat\noram9506-20130730\fig\hm_h1n1_noram_1995_2006_export.traits.nx.mcc.png	
+Figure4b H1N1 netcharge by time. 		E:\Projects\BindingAnal\ParseTree\mat\Mparsetree\dat\noram9506-20130730\fig\20130913\net_bytime(2).fig
+
+From package BindingSim:
+
+Figure5  Probability of infection.		E:\Projects\release\binding_v2_1\tradeoff\figs\infection_prob_fitness_20130911.fig
+Figure6  Simulated log.				E:\Projects\release\binding_v2_1\mainout\ibms\20130906\std_adapt_n4_c15_total_2\Figure6.fig
+Figure7  Simulated viral phylogeny. 		E:\Projects\release\binding_v2_1\mainout\tree\20130906\std_adapt_n4_c15_eq_eq_300\fig\phylogeny.png
+Figure8  Binding avidity among two lineages. 	E:\Projects\release\binding_v2_1\mainout\ibms\20130906\std_adapt_n4_c15_eq_eq\Figure8.fig
+Figure9  Histogram of binding avidity. 		E:\Projects\release\binding_v2_1\mainout\ibms\20130906\std_adapt_n4_c15_eq_eq\Figure9.fig
+Figure10 H3N2 Phylogenetic tree. 		E:\Projects\BindingAnal\BuildTree\beast_log\hm_h3n2_noram\noram30y_20130912\h3n2_phylogeny_30y.png
+Figure11 Simulation log for constant beta.	E:\Projects\release\binding_v2_1\mainout\ibms\20130906\fb_n4_c07_total_2\Figure6.fig
