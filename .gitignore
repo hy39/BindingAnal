@@ -1,6 +1,9 @@
 # ignore all files in the output/ directory
 ParseTree/**/*.mat
-output/
+BindingScr
+BuildTree
+
+
 
 # ignore all .pdf files in the doc- directory
 doc/**/*.pdf
