@@ -7,7 +7,7 @@ doc/
 NetCharge/
 netcharge_smooth
 ParseTree/
-
+.svn/
 
 # ignore all .pdf files in the doc- directory
 doc/**/*.pdf
