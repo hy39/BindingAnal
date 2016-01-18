@@ -3,7 +3,10 @@ ParseTree/**/*.mat
 BindingScr
 BuildTree
 ParseTree/**/*.zip
-
+doc/
+NetCharge/
+netcharge_smooth
+ParseTree/
 
 
 # ignore all .pdf files in the doc- directory
