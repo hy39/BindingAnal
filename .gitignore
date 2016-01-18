@@ -1,5 +1,6 @@
 # ignore all files in the output/ directory
 ParseTree/**/*.mat
+output/
 
 # ignore all .pdf files in the doc- directory
 doc/**/*.pdf
@@ -37,9 +38,19 @@ $RECYCLE.BIN/
 # Thumbnails
 ._*
 
+<<<<<<< HEAD
 # Files that might appear on external disk
 .Spotlight-V100
 .Trashes
+=======
+# Files that might appear in the root of a volume
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+>>>>>>> bf200e51c213ae48cc23dd5bf5f0517a8dc7d518
 
 # Directories potentially created on remote AFP share
 .AppleDB
