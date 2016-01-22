@@ -1,20 +1,58 @@
-figure;
-Mnew = M;
-
-for i = 1:33
+M = csvread('RDE/dat_netch_binding_others.csv',1);
+% column names: Netcharge, Binding, BindingRatio, BindingRatioLog 
+tot = length(M(:,1));
+for i = 1:tot
   if M(i,1) < 0
-        M(i,5) = -1;
+        M(i,5) = -1; % 'netcharge increase'
   end
   if M(i,1) == 0
-        M(i,5) = 0;
+        M(i,5) = 0;  % 'netcharge same'
   end
   if M(i,1) > 0
-        M(i,5) = 1;
+        M(i,5) = 1;  % 'netcharge decrease'
   end
 end
+csvwrite('RDE/MOthers.dat',M);
 
-for i = 1:33
-  for j = i:33
+M = csvread('RDE/dat_netch_binding_hensley.csv',1);
+% column names: Netcharge, Binding, BindingRatio, BindingRatioLog 
+tot = length(M(:,1));
+for i = 1:tot
+  if M(i,1) < 0
+        M(i,5) = -1; % 'netcharge increase'
+  end
+  if M(i,1) == 0
+        M(i,5) = 0;  % 'netcharge same'
+  end
+  if M(i,1) > 0
+        M(i,5) = 1;  % 'netcharge decrease'
+  end
+end
+csvwrite('RDE/MHensley.dat',M);
+
+M = csvread('RDE/dat_netch_binding_total.csv',1);
+% column names: Netcharge, Binding, BindingRatio, BindingRatioLog 
+tot = length(M(:,1));
+for i = 1:tot
+  if M(i,1) < 0
+        M(i,5) = -1; % 'netcharge increase'
+  end
+  if M(i,1) == 0
+        M(i,5) = 0;  % 'netcharge same'
+  end
+  if M(i,1) > 0
+        M(i,5) = 1;  % 'netcharge decrease'
+  end
+end
+csvwrite('RDE/MTotal.dat',M);
+
+
+
+
+
+
+for i = 1:tot
+  for j = i:tot
    
         if i~=j
 		if Mnew(i,1) == Mnew(j,1)
