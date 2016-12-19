@@ -1,3 +1,8 @@
+20161020
+Extract age and netcharge (genTable.m) and save as Chlist.dat in folder Mnetcharge/dat/h3n2_ny
+Use netcharge_age.R in folder validate_netcharge to plot the netcharge-age bar chart
+
+
 netcharge v1: Created in Aug 2012
 To measure netcharge distribution of NY and NZ data.
 One thing is wrong. Some data are duplicated.

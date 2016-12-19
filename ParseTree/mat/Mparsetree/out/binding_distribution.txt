@@ -1,0 +1,8 @@
+with trunk
+
+Strain_internal_mean = [0.1036 0.0365 0.0657 0.0840]
+Strain_external_mean = [0.1775 0.1415 0.1035 0.0937]
+Strain_internal_sd = [0.2761 0.1336 0.2306 0.4179];
+Strain_external_sd = [0.8010 0.3606 0.2845 0.3698];
+h=figure; hold;
+barwitherr(cat(3,zeros(4,2),[Strain_internal_sd' Strain_external_sd']), [1 2 3 4],[Strain_internal_mean' Strain_external_mean'])

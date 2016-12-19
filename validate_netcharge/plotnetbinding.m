@@ -1,3 +1,4 @@
+% souce code can be found at E:\Documents\Github\BindingAnal\validate_netcharge
 M = csvread('RDE/dat_netch_binding_others.csv',1);
 % column names: Netcharge, Binding, BindingRatio, BindingRatioLog 
 tot = length(M(:,1));
@@ -12,7 +13,7 @@ for i = 1:tot
         M(i,5) = 1;  % 'netcharge decrease'
   end
 end
-csvwrite('RDE/MOthers.dat',M);
+csvwrite('RDE/MOthers.dat',M); % RDE from studies other than Hensley
 
 M = csvread('RDE/dat_netch_binding_hensley.csv',1);
 % column names: Netcharge, Binding, BindingRatio, BindingRatioLog 
@@ -28,7 +29,7 @@ for i = 1:tot
         M(i,5) = 1;  % 'netcharge decrease'
   end
 end
-csvwrite('RDE/MHensley.dat',M);
+csvwrite('RDE/MHensley.dat',M); % RDE from Hensley
 
 M = csvread('RDE/dat_netch_binding_total.csv',1);
 % column names: Netcharge, Binding, BindingRatio, BindingRatioLog 

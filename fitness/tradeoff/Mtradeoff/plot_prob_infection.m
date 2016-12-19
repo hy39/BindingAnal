@@ -18,18 +18,20 @@ p = 4;
 r = 70;
 b = 3;
 a = 0.7;
-c = 0.5; % contact rate
+c = 0.7; % contact rate
 nv = 4; % average copies number of each virion
+%V0 = 3; % bottleneck weak
+V0 = 1;  % bottheneck strong
 
 %Epidemiological parameters
 mu_val = 1/(70*365.25); %lifespan = 70y
-gamma_val=1/5; %infecious period should change to 5d
+gamma_val=1/3.3; %infecious period should change to 5d
 
 
 Trans_array = []; %Array of probability of evasion by immune system
 Trans_Pr_array = [];
 
-N_Reinfect = 20; 
+N_Reinfect = 30; 
 
 figure;
 %colorm = {[1 1 0];[1 0 1];[0 1 1];[1 0 0];[0 1 0];[0 0 1];[0 0 0]}; 
@@ -73,14 +75,15 @@ R0_Trans = Trans_array(i,:).*P_Rep.*nv;
 %find Vp that produce the maximum R0 
 v_elem = find(R0_Trans==max(R0_Trans));
 Vp(i) = V(v_elem);
-Rho_Trans = 1 - R0_Trans.^-1;
+Rho_Trans = 1 - R0_Trans.^-V0;
 Rho_Trans(find(Rho_Trans<0))=0;
 B_Trans = c.*Rho_Trans;
 
 plot(V,Rho_Trans,'color',cell2mat(colorm(i))); hold on;
 %subplot(2,2,4); plot(V,B_Pr,'color',cell2mat(colorm(i))); hold on;
 end
-xlabel('Binding avidity V'); ylabel('Infection probability given a contact')
+xlabel('Binding avidity (V)'); ylabel('Infection probability given a contact')
+xlim([0 2]);
 %subplot(2,2,4); xlabel('Binding avidity V'); ylabel('d\beta/dV');
    
 

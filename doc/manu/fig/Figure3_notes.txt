@@ -1,0 +1,17 @@
+To calculate the proportion of viral strains change netcharge
+code: Mparsetree/plotNetchargeByTime_diversity.m
+
+internal 52/684 has netcharge changes
+7.6%
+average change:1.06
+
+0.0804
+
+
+external 80/678 has netcharge changes
+11.8%
+average change:1.13
+
+0.1327
+
+

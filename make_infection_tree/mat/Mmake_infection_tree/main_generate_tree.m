@@ -1,6 +1,7 @@
 function [] = main_generate_tree(infile, smpno, starttime, endtime, display, lang)
 %Reconstruct phylogenies
-%example: main_generate_tree('voutput_small', '30', '10', '200', '0')
+%example1: main_generate_tree('voutput_small', '30', '10', '200', '0')
+%example2: main_generate_tree(infile, '250', '30', '2000', '0', 'c')
 %produce phylogeny in nexus format and also a matlab file
 %Hsiang-Yu Yuan
 %12/01/2016
@@ -23,7 +24,7 @@ lg = 'c'; %c: c code; m:matlab; s:simple version in matlab
 epi_params.annotation='annotation'; % the 1st displayed annotation text
 epi_params.display=0; % display the matlab figure?
 epi_params.savefigure=1; % save the figure?
-epi_params.savetree=1; % files to be saved. 0:no files, 1:only nexus tree file, 2:all the tree files
+epi_params.savetree=2; % files to be saved. 0:no files, 1:only nexus tree file, 2:all the tree files
 epi_params.lg=lg; % language platform
 
 if exist('lang','var') 
@@ -49,7 +50,10 @@ if strcmp(lg,'c')
   infectionK = dat_VirusesArray(:,11);  %immJ
   binding = dat_VirusesArray(:,5);      %binding ini
   bindingFinal = dat_VirusesArray(:,6); %binding final
-  antigenicTot = dat_VirusesArray(:,12);%total antigenic change
+  antigenicTot = dat_VirusesArray(:,13);%total antigenic change
+  %other improtant viral traits
+  immJ = dat_VirusesArray(:,11);        %infected host immunity J
+  parent(1:100) = 0;
 end
 
 if strcmp(lg,'m')
@@ -63,7 +67,7 @@ if strcmp(lg,'m')
   infectionK = dat_VirusesArray(:,5);
   binding = dat_VirusesArray(:,7);
   bindingFinal = dat_VirusesArray(:,8); 
-  antigenicTot = dat_VirusesArray(:,11);
+  antigenicTot = dat_VirusesArray(:,11); %%column numbers need to be changed
 end
 
 if strcmp(lg,'s')
@@ -82,8 +86,11 @@ else
 end
 if exist('endtime','var') 
     endtime = str2num(endtime);
+    if endtime < 1
+       endtime = max(deaths)-1; 
+    end
 else
-    endtime = max(deaths)-10;
+    endtime = max(deaths)-1;
 end
 epi_params.tRange_stoch(1,1)=starttime;
 epi_params.tRange_stoch(1,2)=endtime; %final version 365*45 (1968-2013)

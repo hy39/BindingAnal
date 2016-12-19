@@ -8,6 +8,9 @@ n_individuals_sampled = length(curr_indiv);
 
 for i = 1:n_individuals_sampled
     for j = (i+1):n_individuals_sampled
+        if(j)>length(parentLineages)
+          disp('check error');
+        end
         parents_in_common = setdiff(intersect(parentLineages(i).lin, parentLineages(j).lin), NaN);
         if ~isempty(parents_in_common)
             this_parent = max(parents_in_common);

@@ -1,0 +1,3 @@
+26/01/2016
+compile matlab codes
+mcc -m plotNetchargeByTimeSim.m  getParentList.m -o plotNetcharge

@@ -1,0 +1,241 @@
+\documentclass[12pt,a4paper]{article}
+
+% Always needed
+\usepackage{times}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{lscape}
+\usepackage{multirow}
+
+
+% Optional
+% \usepackage{lscape}
+% \usepackage{multirow}
+% \topmargin 0.0cm
+% \oddsidemargin 0.2cm
+% \textwidth 16cm
+% \textheight 21cm
+% \footskip 1.0cm
+
+%\onehalfspacing
+\doublespacing
+\raggedright
+\begin{document}
+Classification: 
+
+\large {\bf Hemagglutinin Receptor Binding Avidity Driving Influenza Antigenic Drift is Constrained by Short Sight Evolution} \normalsize
+
+Hsiang-Yu Yuan$^{12}$ and Katia Koelle$^2$
+
+\begin{tabbing}
+$^1$ 	\= MRC Centre for Outbreak Analysis and Disease Modelling \\
+		\> Department of Infectious Disease Epidemiology \\
+		\> School of Public Health \\
+		\> Imperial College London \\
+		\> London, United Kingdom \\ \\
+		
+$^2$ 	\> Department of Biology \\
+        \> Duke University \\
+        \> Durham, NC United States \\ \\
+		
+
+\end{tabbing}
+\doublespacing
+$^*$Corresponding author: hyuan@imperial.ac.uk, katia.koelle@duke.edu 
+\clearpage
+
+
+{\bf Abstract}
+
+Influenza viruses circulating in humans are known to undergo rapid antigenic evolution. Significant work remains, however, in understanding the selective drivers of these evolutionary dynamics. Commonly, influenza’s antigenic drift is thought to arise from selection acting directly on drift variants in a frequency-dependent fashion: strains that are antigenically distinct from those circulating previously have a selective advantage because they have more susceptible hosts available to them. Alternative to this hypothesis, a recent study by Hensley and coauthors proposed that influenza’s antigenic drift could be instead a by-product of selection on the cellular receptor binding avidity of influenza viruses. Here, we evaluate the effects of binding avidity changes on influenza’s antigenic drift along with different modes of antigenicity changes, through a combination of viral sequence analysis and simulation modeling. Our results indicate that receptor binding avidity does appear to be a phenotype under immune-mediated selection. However, under weak and gradual antigenic drift, receptor binding avidity appears to be under short-sighted evolution that might decrease a virus’s reproductive potential at the level of the population. While when epochal antigenicity changes occur, receptor changes could become compensatory mutations that increase the fitness of the new strain in the population. We end by discussing the consistency of our findings with the results from the passage experiments analyzed by Hensley and coauthors, as well as the possible roles that receptor binding avidity might play in viral adaptation. 
+
+\clearpage
+
+{\bf Introduction}
+
+Human influenza viruses are known to undergo antigenic drift, a process by which amino acid substitutions occurring in epitope regions of the viral hemagglutinin (HA) protein over time result in escape from preexisting immunity. These antigenic changes enable influenza to reinfect previously infected individuals within 2-4 years and result in the need to update the components of the seasonal influenza vaccine on a close to annual basis [1]. Understanding the factors driving antigenic drift is therefore critical for understanding patterns of disease incidence and for implementing effective influenza control strategies.
+Antigenic drift has commonly been thought to be a consequence of selection acting directly on antigenic variation present in the viral population, with this variation being maintained in the long-term through de novo mutation [2]. Evidence in favor of this hypothesis comes primarily from laboratory studies using monoclonal antibodies, which show that influenza viruses can rapidly escape neutralization by antibodies through genetic changes in HA epitopes [3]. Mathematical models of influenza evolution at the population level further provide support for this mechanism of antigenic drift [4-9]. These models show that antigenically novel strains are expected to replace older strains over time as a direct consequence of the greater number of susceptible hosts that newer strains have access to. Although direct selection acting on drift variants is currently the dominant hypothesis for influenza’s antigenic drift, it is not without criticism. In particular, it has been argued that the polyclonal nature of the host immune response renders this hypothesis implausible [10,11]. This is because under a broad immune response, several antigenic mutations would need to simultaneously occur within a single host for immune escape to be effective. 
+
+More recently, Hensley and coauthors have demonstrated viruses with high binding avidity more effectively evade neutralization by circulating polyclonal antibodies from serial passage experiments in mice [10]. These experiments showed that influenza viruses passaged through vaccinated mice evolved increased receptor binding avidity,whereas the viruses passaged through unvaccinated mice instead evolved decreased receptor binding avidity. By applying these results to humans, Hensley and coauthors argued that natural, consecutively occurring ‘passages’ between “naïve” and “immune” hosts could therefore result in continuous changes in binding avidity. Because a proportion of the sites impacting binding avidity fall in epitope regions, the authors hypothesized: 'antigenic drift can be a by-product of Darwinian selection for mutations that optimize host cell receptor binding during influenza A virus transmission between immune (increased receptor binding) and naïve individuals (decreased receptor binding).' 
+
+With the development of a mathematical model, we have recently shown that this hypothesis predicts that antigenic drift would occur more rapidly in longer-lived hosts [12], consistent with the finding that antigenic drift occurs six times faster in human influenza viruses compared to swine influenza viruses [13]. Acceptance of the binding avidity hypothesis for antigenic drift would fundamentally change how we understand the antigenic evolution of influenza. It would also require a re-evaluation of our influenza control efforts. This is because under this hypothesis, the rate of antigenic drift depends on the extent of population-level variation in immunity. Efforts to lower this variation would be expected to slow antigenic drift and thereby to reduce influenza incidence [10,12]. In contrast, models for antigenic drift that assume direct selection on drift variants predict that the rate of antigenic drift increases with a higher level of herd immunity in the population [14]. Experimental studies have further indicated that antigenically new strains are likely to arise in hosts with limited immunity [15,16]. If this is the case, efforts to slow the rate of antigenic drift should focus on targeting specifically these individuals. Interestingly, partially immune individuals (falling between the “immune” and “naïve” individuals, as classified in [10]) would be the last ones to target if binding avidity changes proved to be the dominant driver of influenza’s antigenic drift. This is because these individuals do not select for either very low or very high binding avidity viruses, and therefore are unlikely to transmit a virus with altered binding avidity or antigenicity. Determining which individuals to target in influenza control programs that aim to reduce disease incidence and slow antigenic drift therefore requires a critical evaluation of current antigenic drift hypotheses.
+
+Whether the results from the serial passage experiments in mice can be meaningfully applied to influenza antigenic drift in humans, however, is an open question. One reason to be skeptical is that natural influenza transmission occurs in a manner which differs considerably from the way in which influenza transmission occurred in these experimental studies. In particular, virus was transmitted between animals through nasal secretions in these studies, and to ensure successful transmission, infectious viral doses were generally very large. In contrast, natural transmission of influenza usually occurs through airborne droplets, resulting in a considerably lower infectious dose [18]. This difference in inoculum size would affect the magnitude of viral genetic bottlenecks, and therefore possibly the strategies available to the virus to escape immunity. Here, we evaluate this hypothesis through a combination of viral sequence analysis and simulation modeling. In our first analysis, we use viral sequence data, together with host age data, to determine whether there is empirical support for immune-mediated selection on receptor binding avidity. In our second analysis, we analyze these viral sequences within a phylogenetic context to determine how frequently binding avidity changes occur along the trunk of the phylogeny. In our third analysis, we extend our previously developed mathematical model for the binding avidity hypothesis by adding the capacity of the model to generate viral transmission trees, which can be interpreted as viral phylogenies.  Using simulations of this ‘phylodynamic’ [2,19] model, we determine the impacts of viral binding avidity changes on influenza antigenic drifts. These three analyses together indicate that, while cellular receptor binding avidity does appear to be a viral phenotype under immune selection. The antigenic drift caused by the by-product of binding avidity changes would be constrained by short-sight evolution during gradual evolution. However, when epochal antigenic changes occur, viral fitness would be optimized through the compensatory adaptation of binding avidity. 
+
+{\bf Results}
+
+% Netcharge vs age
+
+Among the H3N2 viruses isolated in New York State between the year 1994-2005, the proportion of the viruses with higher netcharge (> meadian netcharge 17) first decrease by age until 20 yo and generally increase until the maximum age group which is >100. Netcharge of viruses isolated from Children 10-20 is significantly lower than elders (>65) (fig1). The pattern of the higher netcharge distribution is similar to the U shape seropravalence distributions by age groups (Adam J. Kucharski,  Julia R. Gog 2012 PLOS Comp Bio). A higher seropositivity exist for both elders and young children. To test whether influenza viruses adapt to higher binding avidity through increased netcharge after infecting to higher partial immunity, we collect 70 single amino acid changes with RDE assay from the literature and the average binding scores are higher when the netcharges are increased (fig2). The mutations with increased netcharge show significant higher binding avidity to other mutations (p value = ..., TableS1). (Should also do a test for lower netcharge). A higher netcharge isolated from elders could be caused by the increase of the binding avidity for adapting to a higher host immunity (Hensley 2009 and Yuan 2013).   
+
+% Phylogenetic Analysis
+
+We collected the viral sequences isolated from North America and reconstruct the ancestor state of the nucleotide. Surprisingly, the levels of the Netcharges are clustered in certain clades. There are less within clade netchage change than between the clades among different isolated years. When the strains were grouped by the number of glycosylatino binding sites (which could possibly affect the binding avidity), among the lineage, the netcharge maintain a very low variance in the trunk and the internal nodes. Together, the results seem plausibly to contrast to our previous finding that viruses will adapt to different age group assuming an age mixture pattern that different age group could possibly contact to each other. 
+
+ 
+<Maybe replaced by other figures>
+In order to know the constraints of binding avidity changes, we constructed an individual-based model to simulate the viral phylogeny stochastically combined the within host receptor binding avidity model (Yuan HY1, Koelle K.). Under different scenarios, we want to know which mechanism is more consistent with the phylogenetic tree constructed from the observed viral sequences.
+
+Considering the simplest case without antigenic drift, we observe a single outbreak occurs after initial infected individuals are seeded. When binding avidity is allowed to adapt,    
+
+
+
+which allows us to track different viral phylogeny. 
+
+
+<>
+
+Binding avidity decreased the incidence peak but prolonged the survival of the viral lineage. To understand the impact of binding avidity, the disease dynamics were first constructed without antigenic drift. A single peak was produced for both either with and without the adaptation of binding avidity to the host immunity. The survival of the viruses with binding avidity changes were prolonged (Fig1A), however, the maximum incidence was lower than the viruses which cannot adapt.
+
+During the outbreak, the proportion of higher immunity individuals in the population increased (Fig1B). The immunity increased rapidly while the incidence was during the peak due to more individuals' immunities were boosted and the became slower after the peak until disease faded out. When the host immunity became higher, virus binding avidity increased to adapt to the immunity (Fig1C). The adaptation were determined by the viral fitness. The peak of the effective reproductive number occurred at higher binding avidity after the outbreak (Fig1C). The average binding avidity adapt along the maximum fitness overtime however, individually, if infection occurred in more naive or with higher immunity individuals, viruses adapt to either too low or too high binding avidity within hosts would decrease the fitness. The deleterious effects of the short-sight adaptation of virus binding avidity would lower the incidence as in Fig1A.   
+
+
+
+     
+(How the immunity changed the incidence???)
+
+
+ 
+
+
+map were reconstructed to present the changes of the population immunity. 
+
+
+ 
+
+The point is whether:
+H.A Only random antigenic drift
+H.B Compensatory effects to stratified population immunity or
+H.C Alternative change
+
+1.   
+
+
+
+
+
+  
+ 
+
+
+
+
+ 
+ 
+
+
+
+
+  
+
+
+
+{\bf Acknowledgements}
+
+
+{\bf Author Contributions}
+
+[As per web form]
+
+{\bf Figure Legends}
+
+
+{\bf Figure 1}  Cellular receptor binding avidity dynamics analyzed phylogenetically. (A) The maximum clade credibility (MCC) tree for the H3N2 viral isolates from New York State, with HA net charge values mapped onto all inferred internal nodes and all observed external nodes. Numbers next to the bracketed clades denote the #NGS group. (B) Viral net charge dynamics over time. Each point represents a node from (A) and is colored by whether it is classified as an internal trunk node (red circle), an internal non-trunk node (blue dot), or an external node (green ‘x’). Its placement along the x-axis corresponds to the inferred or observed time of the node in the phylogeny. Its placement along the y-axis corresponds to its calculated net charge value. Each of the four subplots shows viral net charge dynamics for a single #NGS group. The total number of net charge changes occurring along internal branches (including trunk and non-trunk internal branches) was approximately $40\%$ less than the total number of net charge changes occurring along external branches. Normalizing by total branch lengths of internal and external branches yielded similar results, with fewer number of net charge changes occurring per unit time on internal relative to external branches.
+
+{\bf Figure 2} Parameterization of the phylodynamic model. (A) Parameterization of the differential susceptibility model. The assumed relationship between the binding avidity of the virus a susceptible host is challenged with and the probability that the host becomes infected, given contact. Different curves correspond to hosts with different numbers of previous infections. The number of previous infections k increase from blue to red coloration. The functional form is given by $\rho(v)=1-1/(n(1-exp⁡(-p(υ+1))^rk (exp⁡(-〖aυ〗^b )))$, where $v$ is viral binding avidity, $k$ increments by one after each infections, and the parameters used are p = 4, r = 70, a = 0.7, b = 3, and n = 4. (B) Parameterization of the equal susceptibility model scenario. As in (A), the assumed relationship between the binding avidity of the virus a susceptible host is challenged with and the probability that the host becomes infected, given contact. Different curves again correspond to hosts with different numbers of previous infections. The probability of infection of an individual with k previous infections does not depend on binding avidity. Probabilities chosen corresponded to the peak probabilities shown in subplot (A). (C) Within-host viral fitness landscape. Different curves correspond to hosts with different numbers of previous infections. The functional form is given by $n(1-exp⁡(-p(υ+1))^rk (exp⁡(-〖aυ〗^b ))$, with parameter values of p, r, a, b, and n as in subplot (A). Genetic variance is assumed to be h = 0.715.This viral fitness landscape can be interpreted in the context of the within-host basic reproduction number R0. For any binding avidity virus, the R0 (fitness) of a virus is always higher in a more naïve individual than in a more immune individual. In a given individual, the binding avidity of the virus that maximizes its R0 depends on the host’s immune status. In naïve hosts, low-binding avidity viruses have the highest R0’s. In contrast, in more immune (higher k) hosts, high-binding avidity viruses have the highest R0’s. The differential susceptibility model (subplot A) was parameterized such that the probability of infection, given contact, was equal to 1-1/R0, which provides the probability of establishment with a single viral particle in an environment where the virus has a reproduction number of R0. Epidemiological model parameters used in the simulations were: birth/death rate $\mu$ = 1/70 years-1, recovery rate  = 1/5 days-1, and waning immunity rate = 1/3 years-1. For the differential susceptibility model, the contact rate was c = 1.5  days-1,  while for the equal susceptibility model, the contact rate was c = 0.7  days-1. This parameterization led to similar influenza incidence levels at equilibrium, as well as similar mean binding avidity levels. Total population size used was N =  5 million individuals.
+
+{\bf Figure 3} Results from the differential susceptibility model simulation under gradual antigenic drift. (A) A transmission tree constructed from sampling infected individuals serially from the simulated dataset. Internal nodes are colored according to the binding avidity v of the virus at the time of a host’s infection; external nodes are colored according to the binding avidity of the virus at the time of the host’s sampling. Colors from lighter to darker correspond to increasingly higher viral binding avidity. (B) Viral binding avidities for the internal nodes (red dots) and the external (sampled) nodes (green ‘x’s), for the transmission tree shown in (A). Binding avidities of viruses at external nodes are more variable than binding avidities of viruses at the internal nodes, consistent with our findings in Figure 2.  
+
+{\bf Figure 4} Results from the equal susceptibility model simulation. (A) A transmission tree constructed from sampling infected individuals serially from the simulated dataset. (B) Viral binding avidities for the internal nodes (red dots) and the external (sampled) nodes (green ‘x’s), for the transmission tree shown in (A). Coloring as in Fig. 4.
+ 
+{\bf Figure 5} The antigenic drift caused by the combination of antigenic mutations and the by-product of binding avidity changes. The probability of antigenic mutation is xxx. The distribution of the mutational effect on antigenic distance is xxx. The ratio of the by-product caused by binding avidity changes is xxx. the Dark blue represents the antigenic distance for each virus from the infected hosts. Green highlights the larger antigenic mutations. Red represents larger antigenic changes as by-products of binding avidity, whereas light blue represents the weaker antigenic changes as by-products.  
+
+
+
+\bibliographystyle{plain}
+\bibliography{mymend}
+\clearpage
+
+{\bf Table and Figures}
+
+\clearpage
+
+{\bf Figure 1}
+
+\includegraphics[width=1\textwidth]{fig/Figure1.png}
+
+\clearpage
+
+{\bf Figure 2}
+\includegraphics[width=1.2\textwidth]{fig/Figure2.png}
+\clearpage
+
+{\bf Figure 3}
+
+\includegraphics[width=1\textwidth]{fig/Figure3.png}
+
+\clearpage
+
+{\bf Figure 4}
+
+\includegraphics[width=1\textwidth]{fig/Figure4.png}
+
+\clearpage
+
+{\bf Figure 5}
+
+\includegraphics[width=1\textwidth]{fig/Figure5.png}
+
+\clearpage
+
+{\bf Supporting Information}
+
+\clearpage
+
+
+{\bf Table S1.} The effects of the netcharge of single amino acid mutation on receptor binding avidity. 59 mutations are collected from the literature [xxx]. 
+ 
+\begin{tabular*}{13cm}{rrrrrrr}
+
+\hline\hline \\%inserts double horizontal lines
+
+  &  \multicolumn{1}{c}{Binding avidity}  & &   \\
+ 	   \cline{2-3} \\
+ Netcharge &  Decreased or Neutral &       Increased   & Proportion of increase\\
+\hline \\ %inserts double horizontal lines
+
+ -1/0 	&  23 	& 	12 &  34.3\% \\
+
+ +1  	&   6 	&   18 &  75\% \\
+ 
+\hline %inserts double horizontal lines
+\end{tabular*}
+\\
+\\
+\\
+p value was 0.003 after Fisher's exact test was performed.
+
+
+\clearpage
+
+\includegraphics[width=0.8\textwidth]{fig/FigureS1.png}
+
+{\bf Figure S1} The relationship between netcharge of viruses and the infected hosts ages isolated from New York State between 1993 and 2006.
+
+\clearpage
+
+\includegraphics[width=0.8\textwidth]{fig/figureS2.png}
+
+{\bf Figure S2.}
+The relationship between antibody titres of the hosts and the hosts underwent seroconversion.
+
+
+{\bf Figure S3.}
+The average immune status comparing to the number of the previous infections.
+
+\clearpage
+
+
+\end{document}

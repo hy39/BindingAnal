@@ -37,10 +37,11 @@ p = 4;
 r = 70;
 b = 3;
 a = 0.7;
-c = 0.5; % contact rate
+c = 0.7; % contact rate
 nv = 4; % average copies number of each virion
-gamma = 1/5;
-sk = sk./sum(sk); %normalize
+gamma = 1/3.3;
+%sk = sk./sum(sk); %normalize
+V0 = 3; % number of the initial viruses
 for i=1:length(sk)
    k = i-1;
    j = k - delta;
@@ -50,7 +51,7 @@ for i=1:length(sk)
    P_Rep = exp(-a*V.^b);
 
    R0_Trans = P_Trans.*P_Rep.*nv;
-   Rho_Trans = 1 - R0_Trans.^-1;
+   Rho_Trans = 1 - R0_Trans.^-V0;
    Rho_Trans(find(Rho_Trans<0))=0
    B_Trans(i,:) = c.*Rho_Trans; 
 end

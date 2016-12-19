@@ -77,7 +77,8 @@ ngs_nt = ngs_idx(~ismember(ngs_idx, anc));
 ngs_e = ngs_idx(ismember(ngs_idx, [1:n_tips]));
 % find the internal tips of non-trunk
 ngs_i = intersect([n_tips+1:n_total], ngs_nt);
-ngs_ia = [ngs_i;ngs_tr'];
+%ngs_ia = [ngs_i;ngs_tr'];
+ngs_ia = [n_tips+1:n_total];
 mean(abs(charge_name(ngs_ia,6)))
 mean(abs(charge_name(ngs_e,6)))
 

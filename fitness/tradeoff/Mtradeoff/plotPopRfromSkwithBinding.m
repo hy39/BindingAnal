@@ -1,9 +1,10 @@
 % plot the selection coefficient with mutational effects under different
 % Binding Scenario
 % Fixed binding
-% 
+% infile:
+% infileV
 
-function [  ] = plotPopRfromSkwithBinding(infile)
+function [  ] = plotPopRfromSkwithBinding(infile, infileV)
 
 M = csvread( infile ) 
 
@@ -30,21 +31,38 @@ del = 0;
 figure;
 hold on;
 ti=0;
-
+tii = 0;
+totalN = sum(M(1,:));
+T = [];
 for t=1:1:length(M(:,1))
+    %t = 81; %test
+ 
+
+    tii = tii+1;
+    T(tii) = t;
+    %-- draw R curve only every 5 time units
     Sk = M(t,1:50);
+    
     X = Sk;
     X = X./sum(X);
+    %X = X./totalN;
     sk = X;
     f = @(v)-getOptV( v, del, sk );
-    Vopt(t) = fminunc(f,v1,v2);
-    Vnaive(t) = 0;
-    Ropt(t) = getPopR( del, sk, Vopt(t));
-    Rnaive(t) = getPopR( del, sk, Vnaive(t));
- 
-    %-- draw R curve only every 5 time units
-    if rem(t,5) == 1
+    Vopt(tii) = fminunc(f,v1,v2);
+    Vnaive(tii) = 0;
+    Ropt(tii) = getPopR( del, sk, Vopt(tii));
+    Rnaive(tii) = getPopR( del, sk, Vnaive(tii));
+
+    
+    if rem(t,10) == 1
     ti = ti + 1;
+    
+    
+
+    
+    %%----------------------------
+    
+    
     V = 0:0.02:1.5;
     for i=1:length(V)
         v = V(i);
@@ -55,21 +73,24 @@ for t=1:1:length(M(:,1))
     plot3(V, -t*5*(repmat(1,length(V))), R, 'Color',[0.4,0.4,0.4]);
     end
 end
-T = 1:1:length(M(:,1));
+%T = 1:1:length(M(:,1));
 plot3(Vopt, -T*5, zeros(1,length(Vopt)), 'Color',[0.4,0.4,0.4]); % plot optimum V
 plot3(1.5*(repmat(1,length(Vopt))), -T*5, Ropt, 'Color',[0.4,0.4,0.4]); % plot optimum R
 plot3(1.5*(repmat(1,length(Vopt))), -T*5, Rnaive, 'Color',[0.4,0.4,0.4]); % plot naive R
 
-infileV = 'dat/voutput1_2';
-[Vini Vfinal] = calculateBinding( infileV, 5);
- 
-plot3(Vini, -T*5, zeros(1,length(Vopt)), 'R-'); % plot V inital
-plot3(Vfinal, -T*5, zeros(1,length(Vopt)), 'B-'); % plot V final
+%infileV = 'dat/voutput1_2';
+%infileV = 'dat/slow/voutput1_2';
+[Vini Vfinal Vmed] = calculateBinding( infileV, 5);
+Vini = [Vini Vini(end)];
+Vfinal = [Vfinal Vfinal(end)]; 
+Vmed = [Vmed Vmed(end)];
+plot3(Vini, -T(1:length(Vini))*5, zeros(1,length(Vini)), 'R-'); % plot V inital
+plot3(Vfinal, -T(1:length(Vini))*5, zeros(1,length(Vini)), 'B-'); % plot V final
 
 ax = gca;
 xlim
-ax.YTick = [-350:50:0];
-ax.YTickLabel = [350:-50:0];
+ax.YTick = [-5*length(M(:,1)):50:0];
+ax.YTickLabel = [T(end)*5:-50:0];
 ax.XMinorGrid = 'on'
 ax.ZMinorGrid = 'on'
 xlabel('Binding Avidity');

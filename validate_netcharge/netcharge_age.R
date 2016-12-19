@@ -31,7 +31,7 @@ geom_errorbar(limits, width=0.25) +
         ylim(16, 20)
 
 
-
+##
 ## use the following code
 
 df <- data.frame (
@@ -41,18 +41,19 @@ df <- data.frame (
   ub = c(0.48, 0.39, 0.50, 0.49, 0.71, 0.77)
 )
 
-limits <- aes(ymin=df$lb, ymax=df$ub)
+limits <- aes(ymin=df$lb*100, ymax=df$ub*100)
 
-ggplot(df, aes( x=age, y=highcharge)) +
+ggplot(df, aes( x=age, y=highcharge*100)) +
 geom_point(size = 5) +
 geom_errorbar(limits, width=0.25) +
 scale_x_discrete(breaks=c(1,2,3,4,5,6),
-                      labels=c("0-10", "10-20", "20-40", "40-65", "65-80", ">100")) +
+                      labels=c("0-10", "10-20", "20-40", "40-65", "65-80", ">80")) +
 xlab("Age Groups") +
-ylab("The proportion of the isolated viruses with higher netcharge") +
+ylab("The Proportion of High Netcharge (%)") +
+ylim(c(0, 80)) +
 theme(axis.text=element_text(size=14), axis.title=element_text(size=14,face="bold"))
 
-## until here
+## the function ends until here
 
        # geom_errorbar(limits, position="dodge", width=0.25) 
 

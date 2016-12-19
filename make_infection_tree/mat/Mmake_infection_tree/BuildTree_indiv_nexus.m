@@ -46,7 +46,7 @@ annotation = epi_params.annotation;
 %%%Modify above codes
 for i = 1:n_tot_samples
     header = num2str(i);
-    comment = ['[&' annotation '="' num2str(indiv_sampled_antigenicDrift(i)) '",Netcharge.set="",Bindingscr.set="' num2str(indiv_sampled_binding_s(i)) '"]'];
+    comment = ['[&' annotation '="' num2str(indiv_sampled_antigenicDrift(i),'%05.2f') '",Netcharge.set="",Bindingscr.set="' num2str(indiv_sampled_binding_s(i)) '"]'];
     nexus_names{i} = strcat('sample', int2str(i), '_' ,num2str(indiv_sampled(i)), '_', num2str(seq_times(i)));
     names{i} = [header comment];
 end
@@ -98,7 +98,7 @@ while length(curr_indiv)>0
     header = num2str(n_tot_samples+loc_b);
 
     %use starting binding avidity
-    comment = ['[&' annotation '="' num2str(antigenicTot(coal_parent)) '",Netcharge.set="",Bindingscr.set="' num2str(binding(coal_parent)) '"]'];
+    comment = ['[&' annotation '="' num2str(antigenicTot(coal_parent),'%05.2f') '",Netcharge.set="",Bindingscr.set="' num2str(binding(coal_parent)) '"]'];
     %nexus_names{i} = strcat('node', int2str(i), '_' ,num2str(indiv_sampled(i)), '_', num2str(seq_times(i)));
     names{n_tot_samples + loc_b} = [header comment];
     
@@ -183,18 +183,18 @@ while 1
     %timeOfCoalescence = min([complete_seq_times(indiv1_index) complete_seq_times(indiv2_index)]) - branch_length;
     
     %colesce2
-    recovery_rate = 1/5; % in days
-    %num_infected = 10;  % this affect the coalescence distance
-    num_infected = 100;
+    recovery_rate = 1/3.3; % in days
+    %%%%%%num_infected = 10;  % this affect the coalescence distance
+    num_infected = 10;
     lambda_val = n_seqs*(n_seqs-1)*recovery_rate/num_infected;
     branch_length = exprnd(1/lambda_val);
     timeOfCoalescence = min([complete_seq_times(indiv1_index) complete_seq_times(indiv2_index)]) - branch_length;
     
     who
     %colesce3
-    %timeOfCoalescence = -50; % just have all the remaining coalesce at time t = -50
-    %%timeOfCoalescence = time.start-50; % just have all the remaining coalesce at time t = -50
-    %timeOfCoalescence = epi_params.tRange_stoch(1)-50; 
+    %timeOfCoalescence = 0; % just have all the remaining coalesce at time t = -50
+    %timeOfCoalescence = time.start-7; % just have all the remaining coalesce at time t = -50
+    %timeOfCoalescence = epi_params.tRange_stoch(1)-7; 
     
     d(indiv1_index, 1) = complete_seq_times(indiv1_index) - timeOfCoalescence;
     d(indiv2_index, 1) = complete_seq_times(indiv2_index) - timeOfCoalescence;
@@ -206,7 +206,7 @@ while 1
     b(loc_b, 1:2) = [indiv1_index(end) indiv2_index(end)];
     % timeOfCoalescence < 0
     header = num2str(n_tot_samples+loc_b);
-    comment = ['[&annotation="",Netcharge.set="",Bindingscr.set="' num2str(mean(binding(1:100))) '"]'];
+    comment = ['[&' annotation '="' num2str(0,'%05.2f') '",' 'Netcharge.set="",Bindingscr.set="' num2str(mean(binding(1:100))) '"]'];
     names{n_tot_samples + loc_b} = [header comment];
     loc_b = loc_b + 1;
     
@@ -352,8 +352,8 @@ tree_str = fileread(outfile_tree_allnodes);
 fprintf(fid, tree_str);
 fprintf(fid, ['\nEnd;\n']);
 fclose all;
-delete(outfile_tree_allnodes); % keep the nexus but delete the original allnodes tree file 
-disp(['delete the temporary file: ' outfile_tree_allnodes]);
+%delete(outfile_tree_allnodes); % keep the nexus but delete the original allnodes tree file 
+%disp(['delete the temporary file: ' outfile_tree_allnodes]);
 end
 
 delete(outfile_tree);

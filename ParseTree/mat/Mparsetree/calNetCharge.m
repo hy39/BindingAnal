@@ -10,8 +10,20 @@ pairs = string2pairs('dat/ancestor_20130713/hm_h3n2_ny_dna_beast_1993.topo.nw.mc
 anc(find(anc==633)) = [];
 
 %load('dat/ancestor_20130702/hm_h3n2_ny_charge_1993_2006.mat');
-load('dat/ancestor_20130713/hm_h3n2_ny_charge_1993.mat');
+%load('dat/ancestor_20130713/hm_h3n2_ny_charge_1993.mat');
+load('dat/ancestor_20130713/hm_h3n2_ny_charge_1993_2006.mat');
 load('dat/ancestor_20130713/newick_elements.mat'); % Read taxa
+
+taxa_conv = zeros(length(taxa),2);
+for i=1:length(taxa)
+  taxa_conv(i,1) =  taxa(i).id;
+  str2num(taxa(i).name)
+  if ~isempty(taxa(i).name)
+      taxa_conv(i,2) =  str2num(taxa(i).name);
+  else
+      taxa_conv(i,2) =  i;
+  end
+end
 
 charge_name = []; % Use original lable name not the sequential ID, although it give same results. 
 for id=1:length(charge_txt(:,1))
@@ -26,6 +38,7 @@ end
 nodes = [1:n_total];
 non_trunk = nodes(~ismember(1:n_total, anc))
 
+% glycosylation group
 ngs8 = find(charge_name(:,5)==8);
 ngs9 = find(charge_name(:,5)==9);
 ngs10 = find(charge_name(:,5)==10);
@@ -46,10 +59,11 @@ ngs11e = ngs11(ismember(ngs11, [1:n_tips]));
 ngse = {ngs8e, ngs9e, ngs10e, ngs11e};
 
 % find the internal tips of non-trunk
-ngs8i = intersect([n_tips+1:n_total], ngs8nt);
-ngs9i = intersect([n_tips+1:n_total], ngs9nt);
-ngs10i = intersect([n_tips+1:n_total], ngs10nt);
-ngs11i = intersect([n_tips+1:n_total], ngs11nt);
+% ngs8i = intersect([n_tips+1:n_total], ngs8nt);
+ngs8i = intersect([n_tips+1:n_total], ngs8);
+ngs9i = intersect([n_tips+1:n_total], ngs9);
+ngs10i = intersect([n_tips+1:n_total], ngs10);
+ngs11i = intersect([n_tips+1:n_total], ngs11);
 ngsi = {ngs8i, ngs9i, ngs10i, ngs11i};
 
 % find the trunk nodes
@@ -79,6 +93,37 @@ cnt = cnt + 1;
 end
 
 
+%%%!!! Beaware charge_name use taxa.name, charge_txt use taxa.id
+%%% The nexus file includes the taxa.name but not taxa.id
+%%% taxa.id is the id used in matlab after I parse the tree
+
+internal = [n_tips+1:n_total];
+internal_anc = pairs(internal);
+acid = find(internal_anc==0);
+internal(acid) = [];
+internal_anc(acid) = [];
+diff_in = charge_name(internal_anc,1) - charge_name(internal,1);
+
+external = [1:n_tips];
+%external_anc = pairs(taxa_conv(external,2));
+external_anc = pairs(external);
+diff_ex = charge_name(external_anc,1) - charge_name(external,1);
+
+%1. Higher substitution rate
+sum(diff_in(:)~=0)/length(diff_in)
+sum(diff_ex(:)~=0)/length(diff_ex)
+
+%2. 
+var_in = var(charge_name(internal,1))
+var_ex = var(charge_name(external,1))
+
+%3. Proportion of high net charge
+length(find(charge_name(internal,1)>18))/length(charge_name(internal,1))
+length(find(charge_name(external,1)>18))/length(charge_name(external,1))
+
+%1. Higher substitution in external 12.1 vs 7.8
+%2. also show the variance
+%3. Lower proportion of high net charge in external. Higher fitness 
 
 %mean(charge_txt(anc9,1))
 %var(charge_txt(anc9,1))

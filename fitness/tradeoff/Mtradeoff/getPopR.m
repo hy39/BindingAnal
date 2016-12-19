@@ -39,10 +39,10 @@ p = 4;
 r = 70;
 b = 3;
 a = 0.7;
-c = 1; % contact rate
+c = 0.7; % contact rate
 nv = 4; % average copies number of each virion
 gamma = 1/3.3;
-sk = sk./sum(sk); %normalize
+%sk = sk./sum(sk); %normalize
 for i=1:length(sk)
    k = i-1;
    j = k - delta;
@@ -58,7 +58,7 @@ for i=1:length(sk)
 end
    rsk = repmat(sk',1,length(delta));
    B_Trans = sum(B_Trans.*rsk);
-   R = B_Trans*c/gamma;
+   R = B_Trans/gamma;
 end
    
 

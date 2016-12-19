@@ -1,0 +1,8 @@
+--- to James
+1. in virus output csv file, set parentid to be 0 for initial seeding
+2. in virus output csv file, why binding_ini is not 0.65?
+3. Skfile, store immune J not K. 
+4. initial drift should be larger. Otherwise vopt is larger than 0.8.
+
+--- to Sean
+4. calculate netcharge change also for main trunck

@@ -119,6 +119,17 @@ ngs_e = ngs(ismember(ngs, [1:n_tips]));
 % find the internal tips of non-trunk
 ngs_i = intersect([n_tips+1:n_total], ngs_nt);
 
+%% calculate the average binding avidity change
+charge_diff = 0;
+charge_diff_e = 0;
+for i=1:length(ngs_i)
+  charge_diff(i) = abs(charge_name(ngs_i(i))-charge_name(pairs(ngs_i(i))));
+end
+
+for e=1:length(ngs_e)
+  charge_diff_e(e) = abs(charge_name(ngs_e(e))-charge_name(pairs(ngs_e(e))));
+end
+
 % plot
 %subplot(2,1,1);
 plot(distance_root_dpos(ngs_tr), charge_name(ngs_tr,1),'b.');

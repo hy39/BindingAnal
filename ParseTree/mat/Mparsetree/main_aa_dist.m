@@ -31,7 +31,7 @@ aa_array = cell(siz,1);
 aa_charge = [];
 aa_charge_sum = [];
 for i=1:siz
-    aa_seq = char(Sequence(i))
+    aa_seq = char(Sequence(i));
     aa = get_aa_num(aa_seq);
     
     %specify the region in protein sequences
@@ -61,7 +61,7 @@ end
     charge_txt(:,4) = aa_charge(:,4);
     charge_txt(:,5) = aa_charge(:,5);
     
-    save(['dat/' out_file_name], 'header_txt', 'charge_txt', 'ngs');
+    save(['dat/ancestor_20160801/' out_file_name], 'header_txt', 'charge_txt', 'ngs');
     
     %save to text file
     fileID = fopen(['dat/' out_file_name '.csv'],'w');

@@ -1,22 +1,37 @@
 # ignore all files in the output/ directory
 BindingScr
-BuildTree
 ParseTree/**/*.zip
-doc/
-netcharge_smooth
-ParseTree/
+ParseTree/mat/back/
+ParseTree/mat/Mparsetree/dat/
+ParseTree/mat/Msampling/
+netcharge_smooth/
+make_infection_tree/mat/bin/
+make_infection_tree/mat/Mmake_infection_tree/dat/
+fitness/tradeoff/shiny_app
+
+
 NetCharge/perl/Pnetcharge/~temp/
 .svn/
 *.fig
 *.png
 *.jpg
-*.mat
 *.jar
 *.xlsx
-
+*.docx
+*.exe
+*.zip
+*.tree
+*.log
+*.nex
+*.log
+*.csv
 
 # ignore all .pdf files in the doc- directory
 doc/**/*.pdf
+
+# ignore all matlab non source files in the doc- directory
+*.asv
+*.mat
 
 # Windows image file caches
 Thumbs.db

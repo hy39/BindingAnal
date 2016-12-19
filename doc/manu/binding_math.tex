@@ -1,0 +1,81 @@
+\documentclass[12pt,a4paper]{article}
+
+% Always needed
+\usepackage{times}
+\usepackage{parskip}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{url}
+\usepackage{lscape}
+\usepackage{multirow}
+\usepackage{amsmath}
+
+
+% Optional
+% \usepackage{lscape}
+% \usepackage{multirow}
+% \topmargin 0.0cm
+% \oddsidemargin 0.2cm
+% \textwidth 16cm
+% \textheight 21cm
+% \footskip 1.0cm
+
+%\onehalfspacing
+\doublespacing
+\raggedright
+\begin{document}
+test math \\
+
+\begin{equation}
+\begin{split}
+\phi   &= f(J,V)\cdot g(V) \\
+       &= [1-e^{-P(V+1)}]^{rJ}\cdot e^{-aV^b}
+\end{split}
+\end{equation}
+
+\begin{equation}
+R_{in} = n \phi 
+\end{equation}
+
+\begin{equation}
+R=\frac{\sum_{J=0}^{\infty}\beta(J,V)S_{t}(J)}{\gamma N}
+\end{equation}
+\begin{equation}
+I_{tn}(J) = \beta(J,V)\frac{S_{t}(J)}{N} {I_{t}}
+\end{equation}
+
+\begin{equation}
+\bar{w}_{t}(V)=\frac{\sum_{J=0}^{\infty} R_{in}(J,V)I_{tn}^*(J,V)}{\max{R_{in}(J,V)}}
+\end{equation}
+
+where $
+I_{tn}^*(J,V)$ is normalized to be $\frac{I_{tn}(J,V)}{\sum_{J=0}^{\infty}I_{tn}(J,V)}
+$
+
+\begin{equation}
+\bar{w}_{t}(V)=\frac{\sum_{J=0}^{\infty} R_{in}(J,V)I_{tn}^*(J,V)}{\max{R_{in}(J,V)}}
+\end{equation}
+
+\( dv/dt =V_{c}(dR_{in}/dv) \) 
+
+
+
+{\bf Table S1.} The comparison of the seroprevalence observed sera and the titre model output. The seropravalene (\%) among each age group during the baseline and the follow-up rounds are listed.
+
+\begin{tabular*}{16cm}{rrrrrrr}
+
+\hline\hline \\%inserts double horizontal lines
+
+   & Total strains&  \parbox[c]{1.8 cm}{\raggedright No. strains change netcharge}  &    \parbox[c]{1.8cm}{\raggedright Positive changes} &   \parbox[c]{1.8cm}{\raggedright Negative changes} &     \parbox[c]{1.8cm}{\raggedright Prop High Netcharge}    &     \parbox[c]{1.8cm}{\raggedright Avg netcharge}   \\
+\hline \\ %inserts double horizontal lines
+
+Internal &  684 & 53 (7.7\%) &  15 &   38 & 20.0 (\%) & 17.52 $\pm 1.13$\\ \\
+
+External &  686 & 83 (12.1\%) &  32 &   51 & 18.7 (\%)& 17.45 $\pm 1.18$\\ \\
+
+
+\hline %inserts double horizontal lines
+\end{tabular*}
+
+
+\end{document}

@@ -1,0 +1,9 @@
+> library(devtools)
+
+Attaching package: ‘devtools’
+
+The following object is masked _by_ ‘.GlobalEnv’:
+
+    test
+
+> install_github("jameshay218/antigenic_drift/CppInfectionSim/driftSim")

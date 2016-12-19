@@ -1,4 +1,4 @@
-function [ B_Trans ] = getBeta( k,delta )
+function [ B_Trans ] = getBeta( sk,delta,V )
 %Subplot1 f(k,V)
 %Subplot2 g(V) = exp(-a*V.^b)
 %Subplot3 Beta(k,V)
@@ -11,17 +11,24 @@ function [ B_Trans ] = getBeta( k,delta )
 %R0 = f x g x n
 
 %Binding avidity range
-V = 0.8;
+%V = 0.8;
 
 %Transmission parameters
-p = 2;
+%p = 2;
 %r = 1;
-r = 2;
+%r = 2;
+%b = 3;
+%a = 0.7;
+p = 4;
+r = 70;
 b = 3;
 a = 0.7;
+c = 0.7; % contact rate
+
+
 c = 0.5; % contact rate
 nv = 4; % average copies number of each virion
-
+   k = (1:length(sk)) - 1;
    P_Ab = exp(-p*(V+1));
    P_Trans = (1-P_Ab).^(r*(k-delta)); 
    

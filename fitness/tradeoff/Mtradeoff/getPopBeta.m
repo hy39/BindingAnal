@@ -1,4 +1,4 @@
-function [ B_Trans B_Trans_Sum ] = getPopBeta( delta, sk )
+function [ B_Trans B_Trans_Sum ] = getPopBeta( delta, sk, vk)
 %Subplot1 f(k,V)
 %Subplot2 g(V) = exp(-a*V.^b)
 %Subplot3 Beta(k,V)
@@ -22,12 +22,17 @@ sk = X;
 %Sk = [0.0000    0.0000    0.0000    0.0001    0.0044     0.0540    0.2420    0.3989    0.2420    0.0540  0.0044    0.0001    0.0000    0.0000    0.0000  0.0000    0.0000    0.0000    0.0000    0.0000]
 
 %Binding avidity range
-V = 0.8;
+V = 0;
+if exist('vk')
+    V = vk;
+else
+    V = 0.8;
+end
 
 %Transmission parameters
-p = 2;
+p = 4;
 %r = 1;
-r = 2;
+r = 70;
 b = 3;
 a = 0.7;
 c = 0.5; % contact rate
@@ -42,13 +47,14 @@ for i=1:length(sk)
    P_Trans = (1-P_Ab).^(r*(j)); 
    P_Rep = exp(-a*V.^b);
 
-   R0_Trans = P_Trans.*P_Rep.*nv;
-   Rho_Trans = 1 - R0_Trans.^-1;
-   Rho_Trans(find(Rho_Trans<0))=0
-   B_Trans(i,:) = c.*Rho_Trans; 
+   R0_Trans(i) = P_Trans.*P_Rep.*nv;
+
+   %Rho_Trans = 1 - R0_Trans.^-1;
+   %Rho_Trans(find(Rho_Trans<0))=0
+   %B_Trans(i,:) = c.*Rho_Trans; 
 end
    rsk = repmat(sk',1,length(delta));
-   B_Trans_Sum = sum(B_Trans.*rsk)
+   R0_Trans_mean = R0_Trans*rsk;
 end
    
 
