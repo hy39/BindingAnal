@@ -7,15 +7,11 @@ function [] = main_generate_tree(infile, smpno, starttime, endtime, display, lan
 % example2: main_generate_tree(infile, '250', '30', '2000', '0', 'c')
 % use example2 on PC based matlab
 % produce phylogeny in nexus format and also a matlab file
-
-%% without antigenicTot
-% example3: main_generate_tree(infile, '250', '30', '2000', '0', 'm')
-% produce phylogeny in nexus format and also a matlab file
-% this is not used any more
-
+%% 
 % example4: lang = 's'
 % quick and simple way to produce the tree
 % won't save the matlab file
+% this needs to be fixed
 
 % Hsiang-Yu Yuan
 % 12/01/2016

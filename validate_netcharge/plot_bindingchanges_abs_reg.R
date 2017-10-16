@@ -12,3 +12,9 @@ abline(reg1) +
   ylim(c(0, 80)) +
   theme(axis.text=element_text(size=14), axis.title=element_text(size=14,face="bold"))
 summary(reg1)
+
+
+$$ codes of working out t test
+high <- M$abs_binding[M$abs_netcharge>=1]
+low <- M$abs_binding[M$abs_netcharge<1]
+t.test(high, low)    

@@ -136,7 +136,7 @@ plot(distance_root_dpos(ngs_i), charge_name(ngs_i,1),'b.');
 plot(distance_root_dpos(ngs_e), charge_name(ngs_e,1),'gx');
 %plot(distance_root_dpos(ngs_tr), charge_name(ngs_tr,1),'g.');
 %plot(distance_root_dpos(ngs_e), charge_name(ngs_e,1),'x', 'Color', [0 .8 0]);
-ylabel('Binding avidity (V)');
+ylabel('Binding Avidity (V)');
 xlabel('Time (days)');
 
 %plot internal nodes V and external tips V
@@ -164,6 +164,8 @@ load(infileB);
 totalDays=740;
 shift=10;
 plot(1+shift:5:totalDays+shift,Vopt(1:totalDays/5),'-','Color', [0.4 0.4 0.4]);
+
+
 %plot(1+shift:5:totalDays+shift,Vini(1:totalDays/5),'r-');
 %plot(1+shift:5:totalDays+shift,Vfinal(1:totalDays/5),'b-');
 

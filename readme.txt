@@ -1,3 +1,7 @@
+20171016
+1) add validate_netcharge/plotHighnetRatio.R
+2) add make_infection_tree/mat/Mmake_infection_tree/calTreeSackin.R
+
 20160203
 
 1) Produce the viral phylogenies
