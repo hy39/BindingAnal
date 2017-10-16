@@ -27,6 +27,8 @@ NetCharge/perl/Pnetcharge/~temp/
 
 # ignore all .pdf files in the doc- directory
 doc/**/*.pdf
+# ignore all files in the doc- directory
+doc/
 
 # ignore all matlab non source files in the doc- directory
 *.asv
