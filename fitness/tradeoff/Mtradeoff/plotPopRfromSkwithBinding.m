@@ -1,12 +1,16 @@
-% plot the selection coefficient with mutational effects under different
+% plot population fitness and population immunity
 % Binding Scenario
 % Fixed binding
 % infile:
 % infileV
+% infile = 'dat/single_adaptive/.009/hostKs_1.csv'
+% infileV = 'dat/single_adaptive/.009/voutput1_1.csv'
 
+% infile = 'dat/single_adaptive_high/.004/hostKs_1.csv'
+% infileV = 'dat/single_adaptive_high/.004/voutput1_1.csv'
 function [  ] = plotPopRfromSkwithBinding(infile, infileV)
 
-M = csvread( infile ) 
+M = csvread( infile ); 
 
 fixedV = 0.8;
 %MaxK = 11;
@@ -48,7 +52,8 @@ for t=1:1:length(M(:,1))
     %X = X./totalN;
     sk = X;
     f = @(v)-getOptV( v, del, sk );
-    Vopt(tii) = fminunc(f,v1,v2);
+    %Vopt(tii) = fminunc(f,v1,v2);
+    Vopt(tii) = fminunc(f,[v2]);
     Vnaive(tii) = 0;
     Ropt(tii) = getPopR( del, sk, Vopt(tii));
     Rnaive(tii) = getPopR( del, sk, Vnaive(tii));
@@ -83,6 +88,8 @@ plot3(1.5*(repmat(1,length(Vopt))), -T*5, Rnaive, 'Color',[0.4,0.4,0.4]); % plot
 [Vini Vfinal Vmed] = calculateBinding( infileV, 5);
 Vini = [Vini Vini(end)];
 Vfinal = [Vfinal Vfinal(end)]; 
+filename_out = infile(1:regexp(infile,'\.')-1);
+save([filename_out '_binding.mat'],'Vfinal','Vini','Vopt');
 Vmed = [Vmed Vmed(end)];
 plot3(Vini, -T(1:length(Vini))*5, zeros(1,length(Vini)), 'R-'); % plot V inital
 plot3(Vfinal, -T(1:length(Vini))*5, zeros(1,length(Vini)), 'B-'); % plot V final

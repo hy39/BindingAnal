@@ -14,9 +14,12 @@ function [] = plotNetchargeByTimeSim(infile, infileB)
 %infile = ['dat/simphylo/differential/tree_300.mat'];
 %load('dat/simphylo/equal/tree_300.mat');
 %load('dat/voutput_small_tree_40_simple.mat');
+%plot V optimum using infileB
+%infileB includes Vopt
 
 disp(['load the file ' infile]);
 load(infile);
+% import b, d, names
 n_tips=length(b(:,1))+1;
 b(:,3)=n_tips+1:n_tips*2-1;
 distance_root = [];
@@ -144,9 +147,11 @@ set_charge_ext = charge_name(ngs_e,1);
 Vint = 0;
 Vext = 0;
 for i=1:15:round(max(set_dpos_in))
+%for i=1:30:round(max(set_dpos_in)) % use 1:15 as previous setting
   Vint = [Vint mean(set_charge_in(find(set_dpos_in>i & set_dpos_in<i+30)))];
 end
 for i=1:15:round(max(set_dpos_ext))
+%for i=1:30:round(max(set_dpos_ext)) % use 1:30 as previous setting
   Vext = [Vext mean(set_charge_ext(find(set_dpos_ext>i & set_dpos_ext<i+30)))];
 end
 Vint(1) = [];

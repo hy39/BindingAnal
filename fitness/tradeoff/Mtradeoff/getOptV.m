@@ -26,7 +26,7 @@ end
 
 %Binding avidity range
 if exist('v')
-V = v
+V = v;
 else
 V = repmat(0.8,1,length(sk));
 end
@@ -52,11 +52,11 @@ for i=1:length(sk)
 
    R0_Trans = P_Trans.*P_Rep.*nv;
    Rho_Trans = 1 - R0_Trans.^-V0;
-   Rho_Trans(find(Rho_Trans<0))=0
+   Rho_Trans(find(Rho_Trans<0))=0;
    B_Trans(i,:) = c.*Rho_Trans; 
 end
    rsk = repmat(sk',1,length(delta));
-   B_Trans = sum(B_Trans.*rsk)
+   B_Trans = sum(B_Trans.*rsk);
    R = B_Trans*c/gamma;
 end
    
