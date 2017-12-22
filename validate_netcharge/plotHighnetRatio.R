@@ -1,5 +1,6 @@
-# Matlablimits
-
+# plot the netcharge distrbution by age
+# function1: dist by age group
+# function2: netcharge ratio using a sliding window 
 Ch <- read.csv('Chlist.dat')
 
 #Ch1 <- Ch[which(Ch[,4]==10),]
@@ -16,8 +17,9 @@ for (a in 1:length(Ch1[,1])) {
     }
   }
 } 
-Ch1[,10] <- agecode;
-colnames(Ch1) <- c("age", "year", "netcharge", "X4", "X5", "X6", "X7", "X7", "X8","agegroup")
+Ch1[,10] <- agecode;#  age group
+# nlg: N-linked glycosylation
+colnames(Ch1) <- c("age", "year", "netcharge", "nlg", "X5", "X6", "X7", "X7", "X8","agegroup")
 
 #can I reset column 10?
 means <- aggregate(Ch1[,3] ~  Ch1[,10], Ch1, mean)
@@ -36,12 +38,10 @@ agesize[i] <- length(aid)
 }
 
 
+##-----^^^ end of function1---------------
 
-##-----^^^ finish above---------------
-
-
-## To plot Figure2. Net charge distribution by age group. 
-## Please use the following code
+## Supp Figure
+## Net charge distribution by age group
 
 df <- data.frame (
   age = factor(c(1,2,3,4,5)),
@@ -66,45 +66,55 @@ theme(axis.text=element_text(size=14), axis.title=element_text(size=14,face="bol
 
 
 ## the 2nd function starts from here
-##plot sliding window
-interval <- 8
+## preprocessing of plotting sliding window
+interval <- 10 # Default is 8
 meannet <- 0
 highratio <- 0
+samplesize <- 0
 netthreshold <- 19
 id <- 1
 for (i in 1:100) {
   netsubset <- subset(Ch1$netcharge , Ch1$age>i-interval & Ch1$age<i+interval)
   highratio[id] <- length(which(netsubset >= netthreshold))/length(netsubset)
   meannet[id] <- mean(netsubset)
+  samplesize[id] <- length(netsubset)
   id <- id+1
 }
+highratiodf <- data.frame(1:100, highratio, meannet, samplesize)
+colnames(highratiodf) <- c("age", "highratio", "meannet", "samplesize")
 
-highratiodf <- data.frame(1:100, highratio)
-colnames(highratiodf) <- c("age", "highratio")
-
-ggplot(highratiodf, aes(x = age, y = highratio)) +
-  geom_point() +
-  geom_smooth(method = "loess") +
+## Figure2a
+## plot netcharge ratio
+ggplot(highratiodf, aes(x = age, y = highratio*100)) +
+  geom_point(alpha = 0.5, size=samplesize/30) +
+  geom_smooth(method = "loess",span=0.3) +
   xlab("Age") +
   ylab("The Proportion of High Netcharge (%)") +
+  scale_x_continuous(breaks=seq(0,100,20)) +
   theme(text = element_text(size=16))
 
-# geom_errorbar(limits, position="dodge", width=0.25) 
+ 
+## Figure2a
+## plot mean netcharge
+ggplot(highratiodf, aes(x = age, y = meannet)) +
+  geom_point(alpha = 0.5, size=samplesize/30) +
+  geom_smooth(method = "loess",span=0.3) +
+  xlab("Age") +
+  ylab("The Proportion of High Netcharge (%)") +
+  scale_x_continuous(breaks=seq(0,100,20)) +
+  theme(text = element_text(size=16))
 
 
 
-plotTop = 20;
-barCenters <- barplot(height = means[,2],
-            ylim = c(16, plotTop))
-
-
-scale_size_area() +
-xlab('Netcharge Changes') +
-ylab('The effect of amino acid change on cell binding (log scale)') +
-geom_boxplot() + 
-geom_jitter(width=.5, height=0) 
-geom_point()
-
-plotTop = 20;
-barCenters <- barplot(height = means[,2],
-            ylim = c(16, plotTop))
+#plotTop = 20;
+#barCenters <- barplot(height = means[,2],
+#            ylim = c(16, plotTop))
+#scale_size_area() +
+#xlab('Netcharge Changes') +
+#ylab('The effect of amino acid change on cell binding (log scale)') +
+#geom_boxplot() + 
+#geom_jitter(width=.5, height=0) 
+#geom_point()
+#plotTop = 20;
+#barCenters <- barplot(height = means[,2],
+#            ylim = c(16, plotTop))
