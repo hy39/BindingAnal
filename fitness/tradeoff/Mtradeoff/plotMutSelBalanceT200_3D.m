@@ -2,10 +2,12 @@
 % Binding Scenario
 % Fixed binding
 % Ploat the fitness surface with different antigenic changes
+% The function was replaced by plotMutSelBalance_3D()
 
 function [  ] = plotMutSelBalanceT200_3D()
-infile = 'dat/lowV0/hostKs_low_adaptive.csv';
-M = csvread( infile ) 
+%infile = 'dat/lowV0/hostKs_low_adaptive.csv';
+infile = 'dat/single_adaptive_high/.004/hostKs_1.csv';
+M = csvread( infile ); 
 %V = csvread('dat/lowV0/voutput1_low_adaptive.csv',2);
 
 delta = 1:15;
@@ -27,7 +29,7 @@ for t=1:10:length(M(:,1))
     %test 1 200 
     
     
-    %t = 1;
+    t = 200;
     Sk = M(t,1:50);
     
     X = Sk;
@@ -35,9 +37,10 @@ for t=1:10:length(M(:,1))
     X = X./totalN;
     sk = X;
     f = @(v)-getOptV( v, del, sk );
-    v1 = 0;
+    v1 = 0.2;
     v2 = 1;
-    Vopt = fminunc(f,v1,v2);
+    %Vopt = fminunc(f,[v1,v2]);
+    Vopt = fminunc(f,[v2]);
     Vnaive = 0;
     Ropt = getPopR( del, sk, Vopt);
     Rnaive = getPopR( del, sk, Vnaive);

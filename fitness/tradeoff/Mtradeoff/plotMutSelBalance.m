@@ -5,7 +5,8 @@
 
 function [  ] = plotMutSelBalance()
 
-infile = 'dat/lowV0/hostKs_low_adaptive.csv';
+%infile = 'dat/lowV0/hostKs_low_adaptive.csv';
+infile = 'dat/single_adaptive_high/.004/hostKs_1.csv';
 M = csvread( infile ) 
 %V = csvread('dat/lowV0/voutput1_low_adaptive.csv',2);
 
@@ -35,7 +36,8 @@ hold on;
 ti=0;
 tii = 0;
 totalN = sum(M(1,:));
-T = [1 200];;
+%T = [1 200];
+T = 1;
 for tid=1:length(T) 
     %-- draw R curve only every 5 time units
     %test 1 200 
@@ -47,7 +49,8 @@ for tid=1:length(T)
     X = X./totalN;
     sk = X;
     f = @(v)-getOptV( v, del, sk );
-    Vopt = fminunc(f,v1,v2);
+    %Vopt = fminunc(f,v1,v2);
+    Vopt = fminunc(f,[v2]);
     Vnaive = 0;
     Ropt = getPopR( del, sk, Vopt);
     Rnaive = getPopR( del, sk, Vnaive);

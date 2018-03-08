@@ -1,10 +1,20 @@
 function [] = main_generate_tree(infile, smpno, starttime, endtime, display, lang)
-%Reconstruct phylogenies
-%example1: main_generate_tree('voutput_small', '30', '10', '200', '0')
-%example2: main_generate_tree(infile, '250', '30', '2000', '0', 'c')
-%produce phylogeny in nexus format and also a matlab file
-%Hsiang-Yu Yuan
-%12/01/2016
+%% Reconstruct phylogenies
+% Without saving the files
+% example1: main_generate_tree('voutput_small', '30', '10', '200', '0')
+%
+%% with antigenicTot
+% example2: main_generate_tree(infile, '250', '30', '2000', '0', 'c')
+% use example2 on PC based matlab
+% produce phylogeny in nexus format and also a matlab file
+%% 
+% example4: lang = 's'
+% quick and simple way to produce the tree
+% won't save the matlab file
+% this needs to be fixed
+
+% Hsiang-Yu Yuan
+% 12/01/2016
 
 p = path;
 p = path(p,'lib/');
@@ -18,7 +28,11 @@ if exist('infile','var')
   end
 end
 
-n_seqs = str2num(smpno);
+if isnumeric(smpno)
+    n_seqs = smpno;
+else
+    n_seqs = str2num(smpno);
+end
 
 lg = 'c'; %c: c code; m:matlab; s:simple version in matlab 
 epi_params.annotation='annotation'; % the 1st displayed annotation text
@@ -32,8 +46,12 @@ if exist('lang','var')
 end
 
 if exist('display','var') 
+  if isnumeric(display)
+    epi_params.display=display;
+  else
   if str2num(display) == 1
     epi_params.display=1;
+  end
   end
 end
 
@@ -47,12 +65,12 @@ if strcmp(lg,'c')
   births = dat_VirusesArray(:,2);       %birth
   deaths = dat_VirusesArray(:,3);       %death
   parent = dat_VirusesArray(:,4);       %parentid
-  infectionK = dat_VirusesArray(:,11);  %immJ
+  infectionK = dat_VirusesArray(:,11);  %immnuity K
   binding = dat_VirusesArray(:,5);      %binding ini
   bindingFinal = dat_VirusesArray(:,6); %binding final
   antigenicTot = dat_VirusesArray(:,13);%total antigenic change
   %other improtant viral traits
-  immJ = dat_VirusesArray(:,11);        %infected host immunity J
+  immJ = dat_VirusesArray(:,12);        %infected host immunity J
   parent(1:100) = 0;
 end
 
@@ -80,14 +98,22 @@ end
 
 
 if exist('starttime','var') 
-    starttime = str2num(starttime);
+    if isnumeric(starttime)
+    % do nothing
+    else
+        starttime = str2num(starttime);
+    end
 else
     starttime = 30;
 end
-if exist('endtime','var') 
-    endtime = str2num(endtime);
-    if endtime < 1
-       endtime = max(deaths)-1; 
+if exist('endtime','var')
+    if isnumeric(endtime)
+    % do nothing
+    else
+        endtime = str2num(endtime);
+        if endtime < 1
+            endtime = max(deaths)-1; 
+        end
     end
 else
     endtime = max(deaths)-1;

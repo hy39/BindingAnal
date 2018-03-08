@@ -56,8 +56,8 @@ geom_errorbar(limits, width=0.25) +
         ylim(16, 20)
 
 
-##
-## use the following code
+## To plot Figure2. Net charge distribution by age group. 
+## Please use the following code
 
 df <- data.frame (
   age = factor(c(1,2,3,4,5)),

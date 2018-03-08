@@ -3,9 +3,10 @@
 % Fixed binding
 % 
 
-function [  ] = plotMutSelBalanceT200_3D()
-infile = 'dat/lowV0/hostKs_low_adaptive.csv';
-M = csvread( infile ) 
+function [  ] = plotMutSelBalance_3Dcurve()
+%infile = 'dat/lowV0/hostKs_low_adaptive.csv';
+infile = 'dat/single_adaptive_high/.004/hostKs_1.csv';
+M = csvread( infile ); 
 %V = csvread('dat/lowV0/voutput1_low_adaptive.csv',2);
 
 delta = 1:15;
@@ -24,9 +25,10 @@ T = [];
 %for t=1:1:length(M(:,1))
 
     %-- draw R curve only every 5 time units
-    %test 1 200 
+    %test 1 400  pre and post epidemic
     t = 1;
     Sk = M(t,1:50);
+    maxImm = 9;
     
     X = Sk;
     %X = X./sum(X);
@@ -35,7 +37,7 @@ T = [];
     f = @(v)-getOptV( v, del, sk );
     v1 = 0;
     v2 = 1;
-    Vopt = fminunc(f,v1,v2);
+    Vopt = fminunc(f,[v2]);
     Vnaive = 0;
     Ropt = getPopR( del, sk, Vopt);
     Rnaive = getPopR( del, sk, Vnaive);
@@ -44,13 +46,13 @@ T = [];
     
     %%----------------------------
     x = 0:0.05:1.5;
-    y = 0:1:9;
+    y = 0:1:maxImm;
     [X,Y] = meshgrid(x,y)
     V = 0:0.05:1.5;
     
     
     for i=1:length(V)
-       for j=1:1:10
+       for j=1:1:maxImm+1
         del = j-1;
         v = V(i);
         %R = getPopR( del, sk, vopt);
@@ -63,19 +65,14 @@ T = [];
     surf(X,Y,Rpop/(max(max(Rpop))));
     hold on;
     surf(X,Y,Rin/(max(max(Rin))));
-    %Beta = R*(1/3.3);
-    
-    
-    %plot3(V, -t*5*(repmat(1,length(V))), R, 'Color',[0.4,0.4,0.4]);
-    %plot3(2*ones(1,length(V)),V, Rin/max(Rin));
-    %hold on;
-    %plot3(2*ones(1,length(V)),V, R/max(R));
 
-  
+    indices = find(isnan(Rin) == 1);
+    Rin(indices) = 0;
+
 ax = gca;
 xlim(ax,[0 1.2]);
 xlabel('Binding Avidity (V)');
-ylabel('Relative fitness at a given day');
-%zlabel('Reproductive Number');
+ylabel('Antigenic Change');
+zlabel('Relative Fitness');
 
 end

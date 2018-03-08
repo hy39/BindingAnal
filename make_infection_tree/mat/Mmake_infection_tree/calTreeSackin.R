@@ -1,0 +1,5 @@
+#library('ape')
+#library('apTreeshape')
+tree <- read.nexus('voutput1_3_tree_300.nex', tree.names = NULL)
+treeshape <- as.treeshape(tree)
+sackin(treeshape, norm = NULL)
