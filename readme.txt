@@ -1,4 +1,7 @@
-20160203
+----------------
+20190424
+previous updates
+-20160203
 1) Produce the viral phylogenies
    Add the virus output to Mmake_infection_tree/dat/scena1
    Run main_generate_tree(infile, smpno, starttime, endtime, '1', 'c')
@@ -6,16 +9,37 @@
 
    Note: virus output is produced from antigenic_drift package
 
+example
+infile = 'dat/single_adaptive_high/004/voutput1_1'
+smpno = '300'
+starttime = '50'
+endtime = '415'
+-> output tree_300_simple.mat
+
 2) Produce virus binding
-Workdir: Github\BindingAnal\fitness\tradeoff\Mtradeofffunction: plotPopRfromSkwithBinding(infile, infileV)example:infileV = 'dat/single_adaptive_high/.004/voutput1_1.csv';infile = ''dat/single_adaptive_high/.004/hostKs_1.csv'plotPopRfromSkwithBinding(infile, infileV), 
+
+Workdir: Github\BindingAnal\fitness\tradeoff\Mtradeofffunction
+plotPopRfromSkwithBinding(infile, infileV)
+
+example:
+infileV = 'dat/single_adaptive_high/004/voutput1_1.csv';
+infile = 'dat/single_adaptive_high/004/hostKs_1.csv'
+plotPopRfromSkwithBinding(infile, infileV)
+-> output virusbinding.mat' 
+
+
 
 3) Produce the virus binding along the time
    Add the tree output to Mparsetree/dat/scena1
-   To to Mparsetree
+
+   Go to Mparsetree
    Run plotNetchargeByTimeSim
-   > infile2 = 'dat/highVirus/voutput1_highv_tree_300_simple.mat'
-   > infileB2 = 'dat/highVirus/virusbinding.mat'
-   > plotNetchargeByTimeSim(infile2, infileB2)
+   
+   -> infile2 = 'dat/highVirus/voutput1_highv_tree_300_simple.mat'
+   
+   -> infileB2 = 'dat/highVirus/virusbinding.mat'
+   
+   -> plotNetchargeByTimeSim(infile2, infileB2)
    -> output dat/voutput1_2_tree_300_simple.fig
 
 4) Produce the fitness changed with host 
