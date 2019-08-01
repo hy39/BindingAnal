@@ -1,4 +1,4 @@
-function void = BuildTree_indiv_nexus(filename_infectionTreeData, n_seqs)
+function [treeFile] = BuildTree_indiv_nexus(filename_infectionTreeData, n_seqs)
 % Produce the tree file as nexus format
 p = path;
 p = path(p,'lib/');
@@ -258,7 +258,8 @@ tree = phytree(b,d, names);
 %view(tree)
 plot(tree);
 pos_s = regexp(filename,'\.');
-save([filename '_simple.mat'],'b','d','names');
+treeFile = [filename '_simple.mat'];
+save(treeFile,'b','d','names');
 saveas(gcf,[filename_infectionTreeData '.jpg']);
 if epi_params.display==0
   close(gcf);

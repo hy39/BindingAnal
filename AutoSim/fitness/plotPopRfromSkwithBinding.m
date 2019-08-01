@@ -8,7 +8,7 @@
 
 % infile = 'dat/single_adaptive_high/.004/hostKs_1.csv'
 % infileV = 'dat/single_adaptive_high/.004/voutput1_1.csv'
-function [  ] = plotPopRfromSkwithBinding(infile, infileV)
+function [filename_out] = plotPopRfromSkwithBinding(infile, infileV)
 
 M = csvread( infile ); 
 
@@ -89,7 +89,10 @@ plot3(1.5*(repmat(1,length(Vopt))), -T*5, Rnaive, 'Color',[0.4,0.4,0.4]); % plot
 Vini = [Vini Vini(end)];
 Vfinal = [Vfinal Vfinal(end)]; 
 filename_out = infile(1:regexp(infile,'\.')-1);
-save([filename_out '_binding.mat'],'Vfinal','Vini','Vopt');
+filename_out = strrep(filename_out,'input','output');
+filename_out = [filename_out '_binding.mat'];
+save(filename_out,'Vfinal','Vini','Vopt');
+
 Vmed = [Vmed Vmed(end)];
 plot3(Vini, -T(1:length(Vini))*5, zeros(1,length(Vini)), 'R-'); % plot V inital
 plot3(Vfinal, -T(1:length(Vini))*5, zeros(1,length(Vini)), 'B-'); % plot V final
@@ -103,5 +106,7 @@ ax.ZMinorGrid = 'on'
 xlabel('Binding Avidity');
 ylabel('Time (days)');
 zlabel('Reproductive Number');
+
+close(gcf);
 
 end

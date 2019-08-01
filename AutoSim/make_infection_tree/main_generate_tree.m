@@ -1,4 +1,4 @@
-function [] = main_generate_tree(infile, smpno, starttime, endtime, display, lang)
+function [treeFile] = main_generate_tree(infile, smpno, starttime, endtime, display, lang)
 %% Reconstruct phylogenies
 % Without saving the files
 % example1: main_generate_tree('voutput_small', '30', '10', '200', '0')
@@ -16,8 +16,8 @@ function [] = main_generate_tree(infile, smpno, starttime, endtime, display, lan
 % Hsiang-Yu Yuan
 % 12/01/2016
 
-p = path;
-p = path(p,'lib/');
+%%%p = path;
+%%%p = path(p,'lib/');
 %clear all; close all;
 global epi_params;
 
@@ -59,7 +59,8 @@ if strcmp(lg,'c')
   epi_params.annotation='AntigenicDrift';
   %infile example: infile = ['dat/mod01/voutput_small']; 
   M = csvread([infile '.csv'],1);
-  filename_infectionTreeData = strcat(infile, '_tree_', num2str(n_seqs));
+  filename_infectionTreeData = strcat(infile, '_tree_', num2str(n_seqs), '_', num2str(starttime), '_', num2str(endtime));
+  filename_infectionTreeData = strrep(filename_infectionTreeData,'input','output');
   dat_VirusesArray = M;
   count = length(dat_VirusesArray(:,1));%vid
   births = dat_VirusesArray(:,2);       %birth
@@ -78,6 +79,7 @@ if strcmp(lg,'m')
   %infile example: traitfile = ['dat/' proj '/virus_traits'];
   load(infile);
   filename_infectionTreeData = strcat(infile, '_tree_', num2str(n_seqs));
+  filename_infectionTreeData = strrep(filename_infectionTreeData,'input','output');
   count = length(dat_VirusesArray(:,1));
   births = dat_VirusesArray(:,2);
   deaths = dat_VirusesArray(:,3);
@@ -131,7 +133,7 @@ elseif strcmp(lg,'m')
     save(filename_infectionTreeData, 'births', 'deaths', 'parent', 'infectionK', 'binding', 'bindingFinal');
 end
 
-BuildTree_indiv_nexus(filename_infectionTreeData, n_seqs); % build nexus tree
+treeFile = BuildTree_indiv_nexus(filename_infectionTreeData, n_seqs); % build nexus tree
 % delete the temporary files
 if exist([filename_infectionTreeData '.mat'], 'file') == 2
     %delete([filename_infectionTreeData '.mat']);

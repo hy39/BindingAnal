@@ -3,7 +3,7 @@
 % Jan 26, 2016
 % Hsiang-yu Yuan
 
-function [] = plotNetchargeByTimeSim(infile, infileB)
+function [] = plotNetchargeByTimeSim_manuscript(infile, infileB)
 %n_tips=300; %total isolates
 %n_tips=40
 %%pairs = string2pairs('dat/ancestor_20130713/hm_h3n2_ny_dna_beast_1993.topo.nw.mcc.(time).trees',n_tips);
@@ -157,13 +157,13 @@ end
 Vint(1) = [];
 Vext(1) = [];
 shift=10;
-plot(1+shift:15:length(Vint)*15+shift, Vint, '-');
-plot(1+shift:15:length(Vext)*15+shift, Vext, '-');
+plot(shift:15:length(Vint)*15+shift, Vint, '-');
+plot(shift:15:length(Vext)*15+shift, Vext, '-');
 %plot V optimum
 load(infileB);
 totalDays=400;
 shift=10;
-plot(1+shift:5:totalDays+shift,Vopt(1:totalDays/5),'-','Color', [0.4 0.4 0.4]);
+plot(shift:5:totalDays+shift,Vopt(shift/5:totalDays/5),'-','Color', [0.4 0.4 0.4]);
 
 
 %plot(1+shift:5:totalDays+shift,Vini(1:totalDays/5),'r-');
@@ -171,8 +171,8 @@ plot(1+shift:5:totalDays+shift,Vopt(1:totalDays/5),'-','Color', [0.4 0.4 0.4]);
 
 pos_s = regexp(infile,'\.');
 figoutfile = infile(1:pos_s-1);
-%savefig([figoutfile '.fig']);
-%saveas(gcf,[figoutfile '.jpg']);
-%close(gcf);
+savefig([figoutfile '.fig']);
+saveas(gcf,[figoutfile '.jpg']);
+close(gcf);
 end
 
