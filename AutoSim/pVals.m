@@ -17,10 +17,17 @@ csvwrite('extTab.csv',extTab);
 extTab = csvread('extTab.csv');
 intTab = csvread('intTab.csv');
 
+mean(extTab)
+std(extTab)
+mean(intTab)
+std(intTab)
+
 p = zeros(numCases,1);
 for i = 1:numCases
     tab = [intTab(i,:); extTab(i,:)];
     [h,p(i),stats] = fishertest(tab);
 end
+
+harmonic_mean = 1/(sum((1/numCases)./p));
 
 csvwrite(strcat(dir,'p-values.csv'),p);
