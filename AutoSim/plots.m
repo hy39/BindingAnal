@@ -58,6 +58,8 @@ hold off;
 
 %% IV.
 
+% Plot net charge difference of nodes before (assume internal+external) and after (assume internal only) selection
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 load(strcat(dir,'NetChargeDiff.mat'));
 edges = -1:0.05:1;
 centres = edges(1:end-1)+ diff(edges)/2;
@@ -66,11 +68,13 @@ for i=1:size(intMat,1)
    intBin = intBin + histcounts(intMat(i,:), edges);
    extBin = extBin + histcounts(extMat(i,:), edges);
 end
+totalBin = intBin + extBin;
+
 figure
 hold on;
-plot(centres, intBin, 'b');
-plot(centres, extBin, 'g');
-xlabel('Charge difference from ancestor');
-ylabel('No. of nodes ');
-legend({'internal','external'}, 'location','northeast');
+plot(centres, intBin./max(intBin), 'b');
+plot(centres, totalBin./max(totalBin), 'g');
+xlabel('Binding avidity change');
+ylabel('Normalized frequency');
+legend({'after selection','before selection'}, 'location','northeast');
 hold off;
