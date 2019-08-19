@@ -1,4 +1,13 @@
 ----------------
+20190814
+1) Changed file structure
+   AutoSim folder contains scripts for running automatic large-scale simulations of viral phylogeny trees and for post-simulation analyses such as histograms, plots, and p-values.
+   data folder contains input, output, and analysis results. Naming conventions follow those used in antigenic_drift.
+   Run autoSim(numCases, infileVHeader, smpno, starttime, endtime, infileHHeader) to automatically (i) produce viral phylogenies; (ii) produce virus binding; (iii) produce virus binding along time; and (iv) produce fitness changed with host.
+
+
+
+----------------
 20190424
 previous updates
 -20160203
@@ -18,12 +27,17 @@ endtime = '415'
 
 2) Produce virus binding
 
-Workdir: Github\BindingAnal\fitness\tradeoff\Mtradeofffunction
-plotPopRfromSkwithBinding(infile, infileV)
+Workdir: Github\BindingAnal\fitness\tradeoff\Mtradeoff
+function
+plotPopRfromSkwithBinding(infile, infileV)
 
-example:
-infileV = 'dat/single_adaptive_high/004/voutput1_1.csv';
-infile = 'dat/single_adaptive_high/004/hostKs_1.csv'
+
+example:
+
+infileV = 'dat/single_adaptive_high/004/voutput1_1.csv';
+
+infile = 'dat/single_adaptive_high/004/hostKs_1.csv'
+
 plotPopRfromSkwithBinding(infile, infileV)
 -> output virusbinding.mat' 
 
@@ -48,12 +62,15 @@ plotPopRfromSkwithBinding(infile, infileV)
    *-> output dat/fitness_binding.fig
 
 
+
 ----------------
 20160202
 1) add BindingAnal/fitness/tradeoff/Mtradeoff/plotPopSCwithBinding.m
 	- getOptV
 	- getPopSC
 This plots the selection coefficient for mutations with different antigenic effects.
+
+
 
 ----------------
 20160122
@@ -65,6 +82,9 @@ update make_infection_tree/BuildTree_indiv_nexus.m to add binding for ancestor n
 3) PlotNetchargeByTimeSimTest could CALCULATE CHARGE MUTATIONS for internal and external tips.
 
 4) PlotNetChargeByTime_diversity could calcualte netcharge mutations for internal and external tips of phylogenetic trees from sequence data
+
+
+
 ----------------
 20160118
 add NetCharge folder
