@@ -2,7 +2,6 @@
 BindingScr
 ParseTree/**/*.zip
 ParseTree/mat/back/
-ParseTree/mat/Mparsetree/dat/
 ParseTree/mat/Msampling/
 netcharge_smooth/
 make_infection_tree/mat/bin/
@@ -16,7 +15,6 @@ NetCharge/perl/Pnetcharge/~temp/
 *.png
 *.jpg
 *.jar
-*.xlsx
 *.exe
 *.zip
 *.tree
